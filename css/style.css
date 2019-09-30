@@ -1,0 +1,78 @@
+#container {
+    position: absolute;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+}
+
+.mark-wrap{
+   height: 25px;
+   line-height: 25px;
+   padding:0 15px;
+   background-color: #3757fe;
+   color:#fff; 
+   border-radius: 5px;
+   font-size: 12px;
+   position: relative;
+}
+.mark-wrap.click{
+    background-color: red;
+}
+.jiantou{
+    font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
+    bottom:-22px;
+    left:50%;
+    margin-left: -5px;
+}
+.bottom-arrow:before{
+    content:"";
+    border:5px solid #3757fe;
+    border-bottom:none;
+    border-right-color:transparent;
+    border-left-color:transparent;
+    border-radius:2px;
+}
+
+.self-a-c{
+    width: 100px;
+    height: 50px;
+    background-color: #d8d8d8;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
