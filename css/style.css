@@ -1,9 +1,26 @@
+
+
 #container {
     position: absolute;
     left:0;
     top:0;
     right:0;
     bottom:0;
+    overflow: hidden;
+}
+
+.map-head{
+    width: 100%;
+    padding-left: 20px;
+    height: 50px;
+    line-height: 50px;
+    box-sizing: border-box;
+    background-color: #fff;
+    color:#333;
+    position: absolute;
+    left:0;
+    top:0;
+    z-index: 777;
 }
 
 .mark-wrap{
@@ -15,6 +32,7 @@
    border-radius: 5px;
    font-size: 12px;
    position: relative;
+   white-space:nowrap;
 }
 .mark-wrap.click{
     background-color: red;
@@ -35,13 +53,48 @@
     border-radius:2px;
 }
 
+.isclick:before{
+    content:"";
+    border:5px solid red;
+    border-bottom:none;
+    border-right-color:transparent;
+    border-left-color:transparent;
+    border-radius:2px;
+}
+
 .self-a-c{
     width: 100px;
     height: 50px;
     background-color: #d8d8d8;
 }
 
+.map-sidebar{
+    width:320px;
+    padding:10px;
+    position: absolute;
+    right:-340px;
+    top:50px;
+    bottom:0;
+    background-color: #fff;
+    z-index: 777;
+    box-sizing: border-box;
+}
 
+.map-sid-close{
+    width: 32px;
+    height: 32px;
+    background: url(../images/map-close.png) no-repeat center center;
+    background-size: 32px 32px;
+    position: absolute;
+    left: -15px;
+    top:50%;
+    margin-top: -16px;
+    cursor: pointer;
+}
+
+.amap-marker-content{
+    height: 25px;
+}
 
 
 
