@@ -28,7 +28,7 @@
    line-height: 25px;
    padding:0 15px;
    background-color: #3757fe;
-   color:#fff; 
+   color:#fff;
    border-radius: 5px;
    font-size: 12px;
    position: relative;
@@ -96,30 +96,148 @@
     height: 25px;
 }
 
+.map-sidebar-title{
+    font-size: 16px;
+    color:#333;
+}
+
+.jbxx-t{
+   font-size: 12px;
+   color:#333; 
+   margin:10px 0;
+}
+.jbxx-cnt{
+    overflow: hidden;
+    background-color: #f9fafc;
+    padding:10px 10px 0;
+}
+
+.jbxx-cnt-item{
+    height: 30px;
+    overflow: hidden;
+}
+
+.jbxx-cnt-item-l{
+    color:#333;
+}
+
+.jbxx-cnt-item-c{
+    width: 40px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 10px;
+    color:#fff;
+    font-size: 12px;
+    margin:0 15px;
+}
+
+.jbxx-cnt-item-c.zaixian{
+    background-color: #33e583;
+}
+
+.jbxx-cnt-item-c.lixian{
+    background-color: #ababab;
+}
 
 
+.jbxx-cnt-item-r{
+    color:#666;
+}
+
+.jbxx-cnt-item-a{
+    font-size: 12px;
+    color:#6567ee;
+}
+
+.jbxx-cnt table{
+    width: 100%;
+    text-align: center;
+}
+
+.jbxx-cnt table th{
+    height: 30px;
+    font-weight: normal;
+    color:#000;
+}
+.jbxx-cnt table td{
+    height: 30px;
+}
+.icon_{
+    color:#3757fe;
+}
 
 
+.list-head{
+    width: 100%;
+    padding-left: 20px;
+    height: 50px;
+    line-height: 50px;
+    box-sizing: border-box;
+    background-color: #fff;
+    color:#333;
+}
 
+.list-search{
+    height: 80px;
+    padding-left: 20px;
+    line-height: 80px;
+    font-size: 14px;
+    color:#333;
+    border-top: 1px solid #d8d8d8;
+}
 
+.list-input{
+    width: 230px;
+    height: 30px;
+    line-height: 30px;
+    border:1px solid #d8d8d8;
+    padding-left:10px;
+    border-radius: 5px;
+}
 
+.list-button{
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 5px;
+    text-align: center;
+    color:#fff;
+    background-color: blue;
+    border:none;
+}
 
+.my-li-table{
+    width: 100%;
+    font-size: 14px;
+    color:#666;
+    box-sizing: border-box;
+    text-align: center;
+    border-collapse:collapse; border:solid 1px #d8d8d8;
+}
 
+thead tr{
+    height: 50px;
+    line-height: 50px;
+    background-color: #fafafa;
+    border-bottom: 1px solid #d8d8d8;
+}
 
+.my-li-table tbody tr{
+    border-bottom: 1px solid #d8d8d8;
+    height: 50px;
+    line-height: 50px;
 
+}
 
+.my-li-table tbody tr td.lx{
+    color:red;
+}
 
-
-
-
-
-
-
-
-
-
-
-
+.detail-btn{
+    color:blue;
+    cursor: pointer;
+}
 
 
 
