@@ -2,81 +2,89 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <title>test</title>
-  <link rel="stylesheet" type="text/css" href="css/reset.css">
-  <link rel="stylesheet" type="text/css" href="css/style.css">
-  <link rel="stylesheet" href="css/layui.css">
+	<meta charset="utf-8">
+	<title>test</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" href="css/layui.css">
 
 
 
 </head>
 
 <body>
-  <div id="container">
-    <div class="list-head"><strong>工地管理</strong>（工地：28个 <span style="color:#d8d8d8;">|</span> 考勤机：78个）</div>
-    <div class="list-search">
-    	工地ID：<input class="list-input" type="text">&nbsp;&nbsp;&nbsp;&nbsp;工地名称：<input class="list-input" type="text"> &nbsp;&nbsp;&nbsp;&nbsp;<button class="list-button">搜索</button>
-    </div>
-    <div class="table-wrap l-clear">
-    	<table class="my-li-table">
-    		<thead>
-			   <tr>
-			    <th>序号</th>
-			    <th>工地ID</th>
-			    <th>工地名称</th>
-			    <th>工地地址</th>
-			    <th>考勤机个数</th>
-			    <th>考勤机离线个数</th>
-			    <th>操作</th>
-			   </tr>
-			</thead>
-			<tbody>
-			    <tr>
-			      <td>1</td>
-			      <td>213213213</td> 
-			      <td>重庆市潼南区中医院创建“三甲”医院建设项目</td> 
-			      <td>杭州市西湖区古荡湾</td> 
-			      <td>10</td> 
-			      <td class="lx">5</td> 
-			      <td class="detail-btn">查看详情</td> 
-			    </tr>
-			    <tr>
-			      <td>1</td>
-			      <td>213213213</td> 
-			      <td>重庆市潼南区中医院创建“三甲”医院建设项目</td> 
-			      <td>杭州市西湖区古荡湾</td> 
-			      <td>10</td> 
-			      <td class="lx">5</td> 
-			      <td class="detail-btn">查看详情</td> 
-			    </tr>
-		    </tbody>
-    	</table>
-    	<div class="table-fx l-clear">
-    		<div id="demo7"></div>
-    	</div>
-    </div>
-    
-  </div>
+	<div id="container">
+		<div class="list-head">
+			<strong>工地管理</strong>（工地：28个 <span style="color:#d8d8d8;">|</span> 考勤机：78个）
+			<div class="my-qiehuan">
+					<div class="qiehuan-dt l-left" style="margin-right: 10px;"><span class="map-icon "></span> <a class="to-map " href="/mapweb/index.html">地图</a></div>
+					<div class="qiehuan-list l-left"><span class="list-icon click"></span> <a class="to-list " href="/mapweb/list.html">列表</a></div>
+				  </div>
+		</div>
+		<div class="list-search">
+			工地ID：<input class="list-input" type="text">&nbsp;&nbsp;&nbsp;&nbsp;工地名称：<input class="list-input"
+				type="text"> &nbsp;&nbsp;&nbsp;&nbsp;<button class="list-button">搜索</button>
+		</div>
+		<div class="table-wrap l-clear">
+			<table class="my-li-table">
+				<thead>
+					<tr>
+						<th>序号</th>
+						<th>工地ID</th>
+						<th>工地名称</th>
+						<th>工地地址</th>
+						<th>考勤机个数</th>
+						<th>考勤机离线个数</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td>213213213</td>
+						<td>重庆市潼南区中医院创建“三甲”医院建设项目</td>
+						<td>杭州市西湖区古荡湾</td>
+						<td>10</td>
+						<td class="lx">5</td>
+						<td class="detail-btn">查看详情</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>213213213</td>
+						<td>重庆市潼南区中医院创建“三甲”医院建设项目</td>
+						<td>杭州市西湖区古荡湾</td>
+						<td>10</td>
+						<td class="lx">5</td>
+						<td class="detail-btn">查看详情</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="table-fx l-clear">
+				<div id="demo7"></div>
+			</div>
+		</div>
+
+	</div>
 </body>
 <script src="js/jquery.min.js"></script>
 <script src="js/layui.all.js"></script>
 <script type="text/javascript">
-layui.use(['laypage', 'layer'], function(){
-  var laypage = layui.laypage
-  ,layer = layui.layer;
-  
-  //完整功能
-  laypage.render({
-    elem: 'demo7'
-    ,count: 100
-    ,theme: '#3855ff'
-    ,layout: ['prev', 'page', 'next', 'limit','skip']
-    ,jump: function(obj){
-      console.log(obj)
-    }
-  });
-  
-});
+	layui.use(['laypage', 'layer'], function () {
+		var laypage = layui.laypage
+			, layer = layui.layer;
+
+		//完整功能
+		laypage.render({
+			elem: 'demo7'
+			, count: 100
+			, theme: '#3855ff'
+			, layout: ['prev', 'page', 'next', 'limit', 'skip']
+			, jump: function (obj) {
+				console.log(obj)
+			}
+		});
+
+	});
 </script>
+
 </html>

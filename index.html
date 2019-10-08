@@ -13,7 +13,35 @@
 
 <body>
   <div id="container">
-    <div class="map-head"><strong>工地管理</strong>（工地：28个 <span style="color:#d8d8d8;">|</span> 考勤机：78个）</div>
+    <div class="map-head">
+      <strong>工地管理</strong>（工地：28个 <span style="color:#d8d8d8;">|</span> 考勤机：78个）
+      <div class="my-qiehuan">
+        <div class="qiehuan-dt l-left" style="margin-right: 10px;"><span class="map-icon click"></span> <a class="to-map click" href="/mapweb/index.html">地图</a></div>
+        <div class="qiehuan-list l-left"><span class="list-icon"></span> <a class="to-list" href="/mapweb/list.html">列表</a></div>
+      </div>
+    </div>
+    <div class="add-position-btn"><span class="add-icon"></span> 添加工地</div>
+
+    <div class="add-position-alert">
+      <div class="add-p-a-title">添加工地</div>
+      <div class="add-p-a-cnt">
+        <p>地址</p>
+        <input class="add-p-a-input" type="text">
+        <p>经纬度</p>
+        <div class="add-jwd-wrap l-clear">
+          <input class="add-jwd addjd" type="text">&nbsp;/&nbsp;<input class="add-jwd addwd" type="text">
+        </div>
+        <p>选择工地</p>
+        <input class="add-p-a-input" type="text">
+        <div class="add-jwd-foot l-clear">
+          <button class="submit-s">确定</button>
+          <button class="submit-c">取消</button>
+        </div>
+      </div>
+      
+
+    </div>
+
     <div class="map-sidebar">
       <div class="map-sid-close"></div>
       <div class="map-sidebar-title">重庆市潼南区中医院创建“三甲”医院建设项目</div>

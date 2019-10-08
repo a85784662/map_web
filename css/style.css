@@ -239,6 +239,178 @@ thead tr{
     cursor: pointer;
 }
 
+.add-position-btn{
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    color:#333;
+    background-color: #fff;
+    position: absolute;
+    left: 20px;
+    top:70px;
+    z-index: 777;
+    text-align: center;
+    cursor: pointer;
+}
+
+.add-icon{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: url("../images/tianjia.png") no-repeat;
+    background-size: 16px 16px;
+    vertical-align: -2px;
+}
+
+.add-position-alert{
+    width:240px;
+    overflow: hidden;
+    background-color: #fff;
+    position: absolute;
+    left: 20px;
+    top:70px;
+    z-index: 778;
+    display: none;
+}
+
+.add-p-a-title{
+    background-color: #f5f6f9;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 10px;
+}
+.add-p-a-cnt{
+    overflow: hidden;
+    padding: 0 10px 10px;
+}
+
+.add-p-a-input{
+    width: 100%;
+    height: 25px;
+    line-height: 25px;
+    box-sizing: border-box;
+    padding-left: 10px;
+    border: 1px solid #d8d8d8;
+    border-radius: 5px;
+}
+
+.add-jwd{
+    width: 100px;
+    height: 25px;
+    line-height: 25px;
+    box-sizing: border-box;
+    padding-left: 10px;
+    border: 1px solid #d8d8d8;
+    border-radius: 5px;
+}
+
+.add-p-a-cnt p{
+    padding-top: 10px;
+}
+.add-jwd-foot{
+    text-align: center;
+    padding:20px 0 0;
+}
+.submit-s{
+    width:100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color:#fff;
+    font-size: 14px;
+    background-color: #3757fe;
+    border: none;
+}
+.submit-c{
+    width:100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color:#fff;
+    font-size: 14px;
+    background-color: #666;
+    border: none;
+}
+
+.get-jwd{
+    height: 30px;
+    line-height: 30px;
+    padding:0 10px;
+    text-align: center;
+    color:#fff;
+    font-size: 14px;
+    background-color: #3757fe;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+ .my-qiehuan{
+     width:120px;
+     height: 50px;
+     line-height: 50px;
+     float: right;
+ }
+
+.map-icon{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: url("../images/map.png") no-repeat;
+    vertical-align: -3px;
+}
+
+.map-icon.click{
+    background: url("../images/map_click.png") no-repeat;
+}
+
+.list-icon{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: url("../images/list.png") no-repeat; 
+    vertical-align: -3px;
+}
+.list-icon.click{
+    background: url("../images/list_click.png") no-repeat;
+}
+.to-map,.to-list{
+    color:#333;
+}
+.to-map.click,.to-list.click{
+    color:#13227a;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
