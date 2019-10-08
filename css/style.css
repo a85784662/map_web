@@ -216,7 +216,7 @@
     border-collapse:collapse; border:solid 1px #d8d8d8;
 }
 
-thead tr{
+.my-li-table thead tr{
     height: 50px;
     line-height: 50px;
     background-color: #fafafa;
@@ -382,17 +382,78 @@ thead tr{
     color:#13227a;
 }
 
+.j-lxsz{
+    color: blue;
+    cursor: pointer;
+}
 
 
+.alert-mask{
+    background-color: rgba(0,0,0,0.6);
+    position: fixed;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    z-index: 888;
+}
 
+.alert-wrap{
+    width: 700px;
+    height: 450px;
+    border-radius: 5px;
+    background-color: #fff;
+    position: absolute;
+    left: 50%;
+    top:50%;
+    margin-left: -350px;
+    margin-top: -225px;
+}
 
+.alert-title{
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 1px solid #d8d8d8;
+    box-sizing: border-box;
+    padding-left: 20px;
+    font-size: 16px;
+}
+.alert-cnt{
+    padding: 20px;
+}
+.my-alert-table{
+    width: 100%;
+    font-size: 14px;
+    color:#666;
+    box-sizing: border-box;
+    text-align: center;
+    border-collapse:collapse;
+}
 
+.my-alert-table thead tr{
+    height: 30px;
+    line-height: 30px;
+    background-color: #f1f2f3;
+    color:#333;
+}
 
+.my-alert-table tbody tr{
+    height: 30px;
+    line-height: 30px;
+    color:#666;
+}
 
+.alert-close{
+    display: inline-block;
+    width:16px;
+    height: 16px;
+    background: url("../images/close.png") no-repeat;
+    cursor: pointer;
+    position: absolute;
+    right:10px;
+    top:20px;
 
-
-
-
+}
 
 
 

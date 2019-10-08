@@ -6,6 +6,7 @@
   <title></title>
   <link rel="stylesheet" type="text/css" href="css/reset.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" href="css/layui.css">
 
 
 
@@ -97,19 +98,19 @@
                 <td>环境监测</td>
                 <td>25</td>
                 <td>18</td>
-                <td>7</td>
+                <td class="j-lxsz">7</td>
               </tr>
               <tr>
                 <td>升降机监测</td>
                 <td>25</td>
                 <td>18</td>
-                <td>7</td>
+                <td class="j-lxsz">7</td>
               </tr>
               <tr>
                 <td>塔吊监测</td>
                 <td>25</td>
                 <td>18</td>
-                <td>7</td>
+                <td class="j-lxsz">7</td>
               </tr>
             </table>
 
@@ -118,10 +119,157 @@
 
     </div>
   </div>
+  <div class="alert-mask">
+    <div class="alert-wrap">
+      <div class="alert-title">环境监测<span class="alert-close"></span></div>
+      <div class="alert-cnt l-clear">
+        <table class="my-alert-table">
+        <thead>
+          <tr>
+            <th>设备序列号</th>
+            <th>温度</th>
+            <th>温度</th>
+            <th>PM2.5</th>
+            <th>PM10</th>
+            <th>噪音</th>
+            <th>风速</th>
+            <th>风向</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>40123018471</td>
+            <td>22（c）</td>
+            <td>99</td>
+            <td>31ug/m3</td>
+            <td>31ug/m3</td>
+            <td>31 分贝</td>
+            <td>31 米/秒</td>
+            <td>16</td>
+          </tr>
+          <tr>
+            <td>40123018471</td>
+            <td>22（c）</td>
+            <td>99</td>
+            <td>31ug/m3</td>
+            <td>31ug/m3</td>
+            <td>31 分贝</td>
+            <td>31 米/秒</td>
+            <td>16</td>
+          </tr>
+          <tr>
+            <td>40123018471</td>
+            <td>22（c）</td>
+            <td>99</td>
+            <td>31ug/m3</td>
+            <td>31ug/m3</td>
+            <td>31 分贝</td>
+            <td>31 米/秒</td>
+            <td>16</td>
+          </tr>
+          <tr>
+            <td>40123018471</td>
+            <td>22（c）</td>
+            <td>99</td>
+            <td>31ug/m3</td>
+            <td>31ug/m3</td>
+            <td>31 分贝</td>
+            <td>31 米/秒</td>
+            <td>16</td>
+          </tr>
+          <tr>
+            <td>40123018471</td>
+            <td>22（c）</td>
+            <td>99</td>
+            <td>31ug/m3</td>
+            <td>31ug/m3</td>
+            <td>31 分贝</td>
+            <td>31 米/秒</td>
+            <td>16</td>
+          </tr>
+          <tr>
+            <td>40123018471</td>
+            <td>22（c）</td>
+            <td>99</td>
+            <td>31ug/m3</td>
+            <td>31ug/m3</td>
+            <td>31 分贝</td>
+            <td>31 米/秒</td>
+            <td>16</td>
+          </tr>
+          <tr>
+            <td>40123018471</td>
+            <td>22（c）</td>
+            <td>99</td>
+            <td>31ug/m3</td>
+            <td>31ug/m3</td>
+            <td>31 分贝</td>
+            <td>31 米/秒</td>
+            <td>16</td>
+          </tr>
+          <tr>
+            <td>40123018471</td>
+            <td>22（c）</td>
+            <td>99</td>
+            <td>31ug/m3</td>
+            <td>31ug/m3</td>
+            <td>31 分贝</td>
+            <td>31 米/秒</td>
+            <td>16</td>
+          </tr>
+          <tr>
+            <td>40123018471</td>
+            <td>22（c）</td>
+            <td>99</td>
+            <td>31ug/m3</td>
+            <td>31ug/m3</td>
+            <td>31 分贝</td>
+            <td>31 米/秒</td>
+            <td>16</td>
+          </tr>
+          <tr>
+            <td>40123018471</td>
+            <td>22（c）</td>
+            <td>99</td>
+            <td>31ug/m3</td>
+            <td>31ug/m3</td>
+            <td>31 分贝</td>
+            <td>31 米/秒</td>
+            <td>16</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="table-fx l-clear">
+        <div id="demo7"></div>
+      </div>
+      </div>
+      
+    </div>
+  </div>
 </body>
 <script src="js/jquery.min.js"></script>
+<script src="js/layui.all.js"></script>
 <script type="text/javascript"
   src="https://webapi.amap.com/maps?v=1.4.15&key=5b9de52e56488a1a31b003abf6043c5e"></script>
 <script src="js/page.js"></script>
+
+<script type="text/javascript">
+  layui.use(['laypage', 'layer'], function () {
+    var laypage = layui.laypage
+      , layer = layui.layer;
+
+    //完整功能
+    laypage.render({
+      elem: 'demo7'
+      , count: 50
+      , theme: '#3855ff'
+      , layout: ['prev', 'page', 'next']
+      , jump: function (obj) {
+        console.log(obj)
+      }
+    });
+
+  });
+</script>
 
 </html>
