@@ -120,13 +120,13 @@ map.on('click', function (e) {
 
 
 
-
+var ISADMIN; //判断是否管理员
 $.ajax({
     type: "get",
     url: "/judgmentIsAdmin",
     dataType: "json",
     success: function (response) {
-        
+       ISADMIN =  response.content.isAdmin
     }
 });
 

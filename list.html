@@ -24,43 +24,14 @@
 			</div>
 		</div>
 		<div class="list-search">
-			工地ID：<input class="list-input" type="text">&nbsp;&nbsp;&nbsp;&nbsp;工地名称：<input class="list-input"
+			<!-- 工地ID：<input class="list-input" type="text">&nbsp;&nbsp;&nbsp;&nbsp; -->工地名称：<input class="list-input"
 				type="text"> &nbsp;&nbsp;&nbsp;&nbsp;<button class="list-button">搜索</button>
 		</div>
 		<div class="table-wrap l-clear">
-			<table class="my-li-table">
-				<thead>
-					<tr>
-						<th>序号</th>
-						<th>工地ID</th>
-						<th>工地名称</th>
-						<th>工地地址</th>
-						<th>考勤机个数</th>
-						<th>考勤机离线个数</th>
-						<th>操作</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>1</td>
-						<td>213213213</td>
-						<td>重庆市潼南区中医院创建“三甲”医院建设项目</td>
-						<td>杭州市西湖区古荡湾</td>
-						<td>10</td>
-						<td class="lx">5</td>
-						<td class="detail-btn">查看详情</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>213213213</td>
-						<td>重庆市潼南区中医院创建“三甲”医院建设项目</td>
-						<td>杭州市西湖区古荡湾</td>
-						<td>10</td>
-						<td class="lx">5</td>
-						<td class="detail-btn">查看详情</td>
-					</tr>
-				</tbody>
-			</table>
+			<div id="my-li-table-view" class="l-clear">
+				
+			</div>
+			
 			<div class="table-fx l-clear">
 				<div id="demo7"></div>
 			</div>
@@ -139,23 +110,38 @@
 </body>
 <script src="js/jquery.min.js"></script>
 <script src="js/layui.all.js"></script>
+<script src="js/list.js"></script>
+<script id="demo-my-li-table" type="text/html">
+<table class="my-li-table">
+				<thead>
+					<tr>
+						<th>序号</th>
+						<th>工地ID</th>
+						<th>工地名称</th>
+						<th>工地地址</th>
+						<th>考勤机个数</th>
+						<th>考勤机离线个数</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#  layui.each(d, function(index, item){ }}
+					<tr>
+						<td>{{index+1}}</td>
+						<td>{{item.created_at}}</td>
+						<td>{{item.name}}</td>
+						<td>{{item.address}}</td>
+						<td>10</td>
+						<td class="lx">5</td>
+						<td class="detail-btn">查看详情</td>
+					</tr>
+					{{#  }); }}
+				</tbody>
+			</table>
+</script>
 <script type="text/javascript">
-	layui.use(['laypage', 'layer'], function () {
-		var laypage = layui.laypage
-			, layer = layui.layer;
 
-		//完整功能
-		laypage.render({
-			elem: 'demo7'
-			, count: 100
-			, theme: '#3855ff'
-			, layout: ['prev', 'page', 'next', 'limit', 'skip']
-			, jump: function (obj) {
-				console.log(obj)
-			}
-		});
-
-	});
+	
 </script>
 
 </html>
