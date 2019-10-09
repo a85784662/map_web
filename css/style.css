@@ -119,6 +119,7 @@
 
 .jbxx-cnt-item-l{
     color:#333;
+    padding-right: 15px;
 }
 
 .jbxx-cnt-item-c{
@@ -129,7 +130,8 @@
     border-radius: 10px;
     color:#fff;
     font-size: 12px;
-    margin:0 15px;
+    margin:0 15px 0 0;
+    background-color: #d8d8d8;
 }
 
 .jbxx-cnt-item-c.zaixian{
@@ -400,14 +402,12 @@
 
 .alert-wrap{
     width: 700px;
-    height: 450px;
     border-radius: 5px;
     background-color: #fff;
     position: absolute;
     left: 50%;
-    top:50%;
+    top:25%;
     margin-left: -350px;
-    margin-top: -225px;
 }
 
 .alert-title{
@@ -454,14 +454,29 @@
     top:20px;
 
 }
+.xq-al-tiao .title{
+    font-size: 14px;
+    color:#333;
+    padding-bottom: 15px;
+}
+
+.xq-al-tiao span{
+    color:blue;
+    font-weight: bold;
+}
+
+.xq-al-tiao .addre{
+    height: 34px;
+    font-size: 14px;
+    overflow: hidden;
+}
 
 
-
-
-
-
-
-
+.xq-al-tiao .addre-l{
+    width: 316px;
+    height: 34px;
+    font-size: 14px;
+}
 
 
 

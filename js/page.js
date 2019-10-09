@@ -121,7 +121,14 @@ map.on('click', function (e) {
 
 
 
-
+$.ajax({
+    type: "get",
+    url: "/judgmentIsAdmin",
+    dataType: "json",
+    success: function (response) {
+        
+    }
+});
 
 
 
