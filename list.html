@@ -38,6 +38,40 @@
 		</div>
 
 	</div>
+	
+</body>
+<script src="js/jquery.min.js"></script>
+<script src="js/layui.all.js"></script>
+<script src="js/list.js"></script>
+<script id="demo-my-li-table" type="text/html">
+<table class="my-li-table">
+				<thead>
+					<tr>
+						<th>序号</th>
+						<th>工地ID</th>
+						<th>工地名称</th>
+						<th>工地地址</th>
+						<th>考勤机个数</th>
+						<th>考勤机离线个数</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#  layui.each(d, function(index, item){ }}
+					<tr>
+						<td>{{index+1}}</td>
+						<td>{{item.created_at}}</td>
+						<td>{{item.name}}</td>
+						<td>{{item.address}}</td>
+						<td>10</td>
+						<td class="lx">5</td>
+						<td class="detail-btn">查看详情</td>
+					</tr>
+					{{#  }); }}
+				</tbody>
+			</table>
+</script>
+<script id="demo-map-gdxiangqing" type="text/html">
 	<div class="alert-mask">
 		<div class="alert-wrap">
 			<div class="alert-title">工地详情<span class="alert-close"></span></div>
@@ -107,41 +141,6 @@
 
 		</div>
 	</div>
-</body>
-<script src="js/jquery.min.js"></script>
-<script src="js/layui.all.js"></script>
-<script src="js/list.js"></script>
-<script id="demo-my-li-table" type="text/html">
-<table class="my-li-table">
-				<thead>
-					<tr>
-						<th>序号</th>
-						<th>工地ID</th>
-						<th>工地名称</th>
-						<th>工地地址</th>
-						<th>考勤机个数</th>
-						<th>考勤机离线个数</th>
-						<th>操作</th>
-					</tr>
-				</thead>
-				<tbody>
-					{{#  layui.each(d, function(index, item){ }}
-					<tr>
-						<td>{{index+1}}</td>
-						<td>{{item.created_at}}</td>
-						<td>{{item.name}}</td>
-						<td>{{item.address}}</td>
-						<td>10</td>
-						<td class="lx">5</td>
-						<td class="detail-btn">查看详情</td>
-					</tr>
-					{{#  }); }}
-				</tbody>
-			</table>
-</script>
-<script type="text/javascript">
-
-	
 </script>
 
 </html>

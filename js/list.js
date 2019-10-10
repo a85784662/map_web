@@ -131,3 +131,48 @@ $('.list-button').click(function(){
 
 
 })
+
+
+
+//
+$('body').on('click','.detail-btn',function(){
+
+var getTpl = document.getElementById('demo-map-gdxiangqing').innerHTML
+    layui.use('laytpl', function(){
+      var laytpl = layui.laytpl;
+      laytpl(getTpl).render({},function(html){
+      $('body').append(getTpl)
+    });
+
+    });     
+})
+
+$('body').on('click','.alert-close',function(){
+    $(this).parents('.alert-mask').remove()
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

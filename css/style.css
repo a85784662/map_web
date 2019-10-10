@@ -400,7 +400,6 @@
     top:0;
     bottom:0;
     z-index: 888;
-    display: none;
 }
 
 .alert-wrap{
@@ -409,7 +408,7 @@
     background-color: #fff;
     position: absolute;
     left: 50%;
-    top:25%;
+    top:10%;
     margin-left: -350px;
 }
 

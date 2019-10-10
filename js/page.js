@@ -1,17 +1,46 @@
-var markers = [
-    { add: "重庆市万州区", position: [106.550281, 29.562022], dataid: "d1" },
-    { add: "重庆市渝北区", position: [106.550281, 29.561012], dataid: "d2" },
-    { add: "重庆市渝中区", position: [106.550281, 29.560002], dataid: "d3" },
-    { add: "重庆市江北区", position: [106.550281, 29.564032], dataid: "d4" }
-]
-
+var markers = [];
 var map = new AMap.Map('container', {
-    zoom: 16,//级别
+    zoom: 8,//级别
     center: [106.550281, 29.563022],//中心点坐标
     viewMode: '3D'//使用3D视图
 });
 
-markers.forEach((marker, index) => {
+//////////////////////////////////////////////////////////
+
+$.ajax({
+    type: "get",
+    url: "/findProjectList?start=1&display=10000",
+    dataType: "json",
+    success: function (response) {
+        var data = response.content;
+        data.forEach(function(item){
+            var markerObj = {};
+            var position = [];
+            if(item.longitude){
+                markerObj.add = item.construction_unit;
+                markerObj.dataid = item.id;
+                position.push(parseFloat(item.longitude));
+                position.push(parseFloat(item.latitude));
+                markerObj.position = position;
+                markers.push(markerObj)
+            };
+            
+        });
+        console.log(markers)
+        createMarkers(markers)
+        
+    }
+});
+
+
+
+
+
+//////////////////////////////////////////////////////
+
+
+function createMarkers(markers){
+    markers.forEach((marker, index) => {
     var markerContent = `<div dataid="${marker.dataid}" class="mark-wrap">${marker.add}<span class="jiantou"><i class="bottom-arrow"></i></span></div>`
 
     var mapMaker = new AMap.Marker({
@@ -39,13 +68,42 @@ markers.forEach((marker, index) => {
         $('.bottom-arrow').removeClass('isclick');
         $(e.target.getContentDom()).find('.mark-wrap').addClass('click').find('.bottom-arrow').addClass('isclick');
         console.log($(e.target.getContentDom()).find('.mark-wrap').attr('dataid'))
-        $('.map-sidebar').animate({
-            right: "0",
-        }, 800);
+        var projectId = $(e.target.getContentDom()).find('.mark-wrap').attr('dataid');
+
+        //获取项目详情
+            $.ajax({
+                type: "get",
+                url: "/findProjectInfo?projectId="+projectId,
+                dataType: "json",
+                success: function (response) {
+                    var data = response.content;
+                    var getTpl = document.getElementById('demo-map-sidebar-jbxx').innerHTML
+                    ,view = document.getElementById('map-sidebar-jbxx-view');
+
+                    layui.use('laytpl', function(){
+                      var laytpl = layui.laytpl;
+                      laytpl(getTpl).render(data, function(html){
+                      view.innerHTML = html;
+                    });
+
+                    }); 
+
+                    $('.map-sidebar').animate({
+                        right: "0",
+                    }, 800);
+                }
+            });
+
+
+        /////////over
+
+        
     }
     mapMaker.on('click', onMarkerClick)
 
 })
+}
+
 
 $('.map-sid-close').click(function () {
     $('.map-sidebar').animate({
@@ -131,9 +189,24 @@ $.ajax({
 });
 
 
+$('body').on('click','.j-lxsz',function(){
 
+var getTpl = document.getElementById('demo-map-huanjing').innerHTML
+    ,view = document.getElementById('mybody');
+console.log(getTpl)
+console.log(view)
+    layui.use('laytpl', function(){
+      var laytpl = layui.laytpl;
+      laytpl(getTpl).render({},function(html){
+      $('body').append(getTpl)
+    });
 
+    });     
+})
 
+$('body').on('click','.alert-close',function(){
+    $(this).parents('.alert-mask').remove()
+})
 
 
 

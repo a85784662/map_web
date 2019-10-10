@@ -12,7 +12,7 @@
 
 </head>
 
-<body>
+<body id="mybody">
   <div id="container">
     <div class="map-head">
       <strong>工地管理</strong>（工地：28个 <span style="color:#d8d8d8;">|</span> 考勤机：78个）
@@ -45,28 +45,8 @@
 
     <div class="map-sidebar">
       <div class="map-sid-close"></div>
-      <div class="map-sidebar-title">重庆市潼南区中医院创建“三甲”医院建设项目</div>
-      <div class="map-sidebar-cont">
-        <div class="jbxx-t"><span class="icon_">|</span> 基本信息</div>
-        <div class="jbxx-cnt f12">
-          <div class="jbxx-cnt-item">
-            <div class="jbxx-cnt-item-l l-left">施工地址：</div>
-            <div class="jbxx-cnt-item-r l-left">潼南区桂林街道巴渝大道15号</div>
-          </div>
-          <div class="jbxx-cnt-item">
-            <div class="jbxx-cnt-item-l l-left">建设单位：</div>
-            <div class="jbxx-cnt-item-r l-left">重庆市潼南区中医院</div>
-          </div>
-          <div class="jbxx-cnt-item">
-            <div class="jbxx-cnt-item-l l-left">施工单位：</div>
-            <div class="jbxx-cnt-item-r l-left">重庆建工第三建设有限责任公司</div>
-          </div>
-          <div class="jbxx-cnt-item">
-            <div class="jbxx-cnt-item-l l-left">开工时间：</div>
-            <div class="jbxx-cnt-item-r l-left">2019-02-14</div>
-          </div>
-        </div>
-      </div>
+      <div id="map-sidebar-jbxx-view" class="l-clear"></div>
+      
 
       <div class="map-sidebar-cont">
         <div class="jbxx-t"><span class="icon_">|</span> 考勤机信息</div>
@@ -119,6 +99,39 @@
 
     </div>
   </div>
+  
+</body>
+<script src="js/jquery.min.js"></script>
+<script src="js/layui.all.js"></script>
+<script type="text/javascript"
+  src="https://webapi.amap.com/maps?v=1.4.15&key=5b9de52e56488a1a31b003abf6043c5e"></script>
+<script src="js/page.js"></script>
+<script id="demo-map-sidebar-jbxx" type="text/html">
+  <div class="map-sidebar-title">{{d.address}}{{d.name}}</div>
+      <div class="map-sidebar-cont">
+        <div class="jbxx-t"><span class="icon_">|</span> 基本信息</div>
+        <div class="jbxx-cnt f12">
+          <div class="jbxx-cnt-item">
+            <div class="jbxx-cnt-item-l l-left">施工地址：</div>
+            <div class="jbxx-cnt-item-r l-left">{{d.address}}</div>
+          </div>
+          <div class="jbxx-cnt-item">
+            <div class="jbxx-cnt-item-l l-left">建设单位：</div>
+            <div class="jbxx-cnt-item-r l-left">{{d.construction_unit}}</div>
+          </div>
+          <div class="jbxx-cnt-item">
+            <div class="jbxx-cnt-item-l l-left">施工单位：</div>
+            <div class="jbxx-cnt-item-r l-left">{{d.work_unit}}</div>
+          </div>
+          <div class="jbxx-cnt-item">
+            <div class="jbxx-cnt-item-l l-left">开工时间：</div>
+            <div class="jbxx-cnt-item-r l-left">{{d.start_time}}</div>
+          </div>
+        </div>
+      </div>
+</script>
+
+<script id="demo-map-huanjing" type="text/html">
   <div class="alert-mask">
     <div class="alert-wrap">
       <div class="alert-title">环境监测<span class="alert-close"></span></div>
@@ -246,12 +259,7 @@
       
     </div>
   </div>
-</body>
-<script src="js/jquery.min.js"></script>
-<script src="js/layui.all.js"></script>
-<script type="text/javascript"
-  src="https://webapi.amap.com/maps?v=1.4.15&key=5b9de52e56488a1a31b003abf6043c5e"></script>
-<script src="js/page.js"></script>
+</script>
 
 <script type="text/javascript">
   layui.use(['laypage', 'layer'], function () {
