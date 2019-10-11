@@ -210,12 +210,70 @@ $('body').on('click','.alert-close',function(){
 
 
 
+$('.xzquyu').change(function(e){
+    currentVal = $(this).val()
+    if(currentVal==="0"){
+        $('.xzgongdi').hide();
+        $('.map-sidebar').removeClass('ffbg')
+    }else{
+        $('.xzgongdi').show();
+        $('.map-sidebar').addClass('ffbg')
+        
+    }
+})
 
 
+$('body').on('change','.xzgongdi',function(){
+    var projectId = $(this).val();
 
 
+//获取项目详情
+            $.ajax({
+                type: "get",
+                url: "/findProjectInfo?projectId="+projectId,
+                dataType: "json",
+                success: function (response) {
+                    var data = response.content;
+                    var getTpl = document.getElementById('demo-map-sidebar-jbxx').innerHTML
+                    ,view = document.getElementById('map-sidebar-jbxx-view');
+
+                    layui.use('laytpl', function(){
+                      var laytpl = layui.laytpl;
+                      laytpl(getTpl).render(data, function(html){
+                      view.innerHTML = html;
+                    });
+
+                    }); 
+
+                    $('.big-baoqi').show()
+                }
+            });
 
 
+        /////////over
+
+
+})
+
+///修改经纬度
+$('body').on('click','.submit-s',function(){
+    var projectId = $('.xzgongdi').val();
+    var longitude = $('.addjd').val();
+    var latitude = $('.addwd').val();
+
+    $.ajax({
+                type: "get",
+                url: "/setLatitudeAndLongitude?projectId="+projectId+"&longitude="+longitude+"&latitude="+latitude,
+                dataType: "json",
+                success: function (response) {
+                   // var data = response.content;
+                   alert(response.msg)
+        
+                }
+            });
+
+
+})
 
 
 

@@ -69,14 +69,18 @@
 
 .map-sidebar{
     width:320px;
+    overflow: hidden;
     padding:10px;
     position: absolute;
-    right:-340px;
+    /* right:-340px; */
+    right:0;
     top:50px;
-    bottom:0;
-    background-color: #fff;
     z-index: 777;
     box-sizing: border-box;
+}
+
+.map-sidebar.ffbg{
+background-color: #fff;
 }
 
 .map-sid-close{
@@ -318,13 +322,15 @@
 }
 .submit-s{
     width:100px;
-    height: 30px;
-    line-height: 30px;
+    height: 25px;
+    line-height: 25px;
     text-align: center;
     color:#fff;
     font-size: 14px;
     background-color: #3757fe;
     border: none;
+    border-radius: 5px;
+    font-size: 12px;
 }
 .submit-c{
     width:100px;
@@ -480,10 +486,25 @@
     font-size: 14px;
 }
 
+.xzquyu{
+    width: 300px;
+    height: 30px;
+    line-height: 30px;
+    border:1px solid #d8d8d8;
+    margin-bottom: 10px;
+}
 
-
-
-
+.xzgongdi{
+    width: 300px;
+    height: 30px;
+    line-height: 30px;
+    border:1px solid #d8d8d8;
+    margin-bottom: 10px;
+    display: none;
+}
+.big-baoqi{
+    display: none;
+}
 
 
 

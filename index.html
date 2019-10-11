@@ -21,33 +21,45 @@
         <div class="qiehuan-list l-left"><span class="list-icon"></span> <a class="to-list" href="/mapweb/list.html">列表</a></div>
       </div>
     </div>
-    <div class="add-position-btn"><span class="add-icon"></span> 添加工地</div>
+<!--     <div class="add-position-btn"><span class="add-icon"></span> 添加工地</div>
 
-    <div class="add-position-alert">
-      <div class="add-p-a-title">添加工地</div>
-      <div class="add-p-a-cnt">
-        <p>地址</p>
-        <input class="add-p-a-input" type="text">
-        <p>经纬度</p>
-        <div class="add-jwd-wrap l-clear">
-          <input class="add-jwd addjd" type="text">&nbsp;/&nbsp;<input class="add-jwd addwd" type="text">
-        </div>
-        <p>选择工地</p>
-        <input class="add-p-a-input" type="text">
-        <div class="add-jwd-foot l-clear">
-          <button class="submit-s">确定</button>
-          <button class="submit-c">取消</button>
-        </div>
-      </div>
-      
-
+<div class="add-position-alert">
+  <div class="add-p-a-title">添加工地</div>
+  <div class="add-p-a-cnt">
+    <p>地址</p>
+    <input class="add-p-a-input" type="text">
+    <p>经纬度</p>
+    <div class="add-jwd-wrap l-clear">
+      <input class="add-jwd addjd" type="text">&nbsp;/&nbsp;<input class="add-jwd addwd" type="text">
     </div>
+    <p>选择工地</p>
+    <input class="add-p-a-input" type="text">
+    <div class="add-jwd-foot l-clear">
+      <button class="submit-s">确定</button>
+      <button class="submit-c">取消</button>
+    </div>
+  </div>
+  
+
+</div> -->
 
     <div class="map-sidebar">
-      <div class="map-sid-close"></div>
+      <!-- <div class="map-sid-close"></div> -->
+      <select class="xzquyu">
+        <option value="0">选择区域</option>
+        <option value="1">万州</option>
+        <option value="2">渝北</option>
+        <option value="3">江北</option>
+      </select>
+      <select class="xzgongdi">
+        <option>选择工地</option>
+        <option value="4">4</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="14">14</option>
+      </select>
+      <div class="big-baoqi">
       <div id="map-sidebar-jbxx-view" class="l-clear"></div>
-      
-
       <div class="map-sidebar-cont">
         <div class="jbxx-t"><span class="icon_">|</span> 考勤机信息</div>
         <div class="jbxx-cnt f12">
@@ -96,7 +108,7 @@
 
         </div>
       </div>
-
+      </div>
     </div>
   </div>
   
@@ -124,8 +136,13 @@
             <div class="jbxx-cnt-item-r l-left">{{d.work_unit}}</div>
           </div>
           <div class="jbxx-cnt-item">
-            <div class="jbxx-cnt-item-l l-left">开工时间：</div>
-            <div class="jbxx-cnt-item-r l-left">{{d.start_time}}</div>
+            <div class="jbxx-cnt-item-l l-left">经纬度：</div>
+            <div class="jbxx-cnt-item-r l-left">
+              <input value="{{d.longitude}}" class="add-jwd addjd" type="text">&nbsp;/&nbsp;<input value="{{d.latitude}}" class="add-jwd addwd" type="text">
+            </div>
+          </div>
+          <div class="jbxx-cnt-item" style="padding:10px 0">
+              <button class="submit-s">点击修改经纬度</button>
           </div>
         </div>
       </div>
