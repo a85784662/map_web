@@ -1,22 +1,21 @@
+//初始化高德地图
 var markers = [];
 var map = new AMap.Map('container', {
     zoom: 8,//级别
     center: [106.550281, 29.563022],//中心点坐标
     viewMode: '3D'//使用3D视图
 });
-
-//////////////////////////////////////////////////////////
-
+//获取项目列表
 $.ajax({
     type: "get",
     url: "/findProjectList?start=1&display=10000",
     dataType: "json",
     success: function (response) {
         var data = response.content;
-        data.forEach(function(item){
+        data.forEach(function (item) {
             var markerObj = {};
             var position = [];
-            if(item.longitude){
+            if (item.longitude) {
                 markerObj.add = item.construction_unit;
                 markerObj.dataid = item.id;
                 position.push(parseFloat(item.longitude));
@@ -24,139 +23,71 @@ $.ajax({
                 markerObj.position = position;
                 markers.push(markerObj)
             };
-            
         });
-        console.log(markers)
         createMarkers(markers)
-        
     }
 });
-
-
-
-
-
-//////////////////////////////////////////////////////
-
-
-function createMarkers(markers){
+// 在高德地图上面生成自定义标签createMarkers方法
+function createMarkers(markers) {
     markers.forEach((marker, index) => {
-    var markerContent = `<div dataid="${marker.dataid}" class="mark-wrap">${marker.add}<span class="jiantou"><i class="bottom-arrow"></i></span></div>`
+        var markerContent = `<div dataid="${marker.dataid}" class="mark-wrap">${marker.add}<span class="jiantou"><i class="bottom-arrow"></i></span></div>`
 
-    var mapMaker = new AMap.Marker({
-        position: marker.position,
-        // 将 html 传给 content
-        content: markerContent,
-        // 以 icon 的 [center bottom] 为原点
-        offset: new AMap.Pixel(-13, -30)
-    });
+        var mapMaker = new AMap.Marker({
+            position: marker.position,
+            // 将 html 传给 content
+            content: markerContent,
+            // 以 icon 的 [center bottom] 为原点
+            offset: new AMap.Pixel(-13, -30)
+        });
 
-    map.add(mapMaker);
+        map.add(mapMaker);
 
+        var onMarkerClick = function (e) {
+            //e.target就是被点击的Marker
+            console.log(e.target.getPosition())
+            $('.mark-wrap').removeClass('click');
+            $('.bottom-arrow').removeClass('isclick');
+            $(e.target.getContentDom()).find('.mark-wrap').addClass('click').find('.bottom-arrow').addClass('isclick');
+            console.log($(e.target.getContentDom()).find('.mark-wrap').attr('dataid'))
+            var projectId = $(e.target.getContentDom()).find('.mark-wrap').attr('dataid');
 
-    /* var infoWindow = new AMap.InfoWindow({ //创建信息窗体
-        isCustom: true,  //使用自定义窗体
-        content:'<div class="self-a-c">信息窗体</div>', //信息窗体的内容可以是任意html片段
-        offset: new AMap.Pixel(16, -45)
-    }); */
-    var onMarkerClick = function (e) {
-        //e.target就是被点击的Marker
-        //infoWindow.open(map, e.target.getPosition());//打开信息窗体
-        console.log(e.target.getPosition())
-        //console.log(e.target.getContentDom());
-        $('.mark-wrap').removeClass('click');
-        $('.bottom-arrow').removeClass('isclick');
-        $(e.target.getContentDom()).find('.mark-wrap').addClass('click').find('.bottom-arrow').addClass('isclick');
-        console.log($(e.target.getContentDom()).find('.mark-wrap').attr('dataid'))
-        var projectId = $(e.target.getContentDom()).find('.mark-wrap').attr('dataid');
-
-        //获取项目详情
+            //获取项目详情
             $.ajax({
                 type: "get",
-                url: "/findProjectInfo?projectId="+projectId,
+                url: "/findProjectInfo?projectId=" + projectId,
                 dataType: "json",
                 success: function (response) {
                     var data = response.content;
                     var getTpl = document.getElementById('demo-map-sidebar-jbxx').innerHTML
-                    ,view = document.getElementById('map-sidebar-jbxx-view');
+                        , view = document.getElementById('map-sidebar-jbxx-view');
 
-                    layui.use('laytpl', function(){
-                      var laytpl = layui.laytpl;
-                      laytpl(getTpl).render(data, function(html){
-                      view.innerHTML = html;
+                    layui.use('laytpl', function () {
+                        var laytpl = layui.laytpl;
+                        laytpl(getTpl).render(data, function (html) {
+                            view.innerHTML = html;
+                        });
+
                     });
-
-                    }); 
 
                     $('.map-sidebar').animate({
                         right: "0",
                     }, 800);
                 }
             });
+            /////////over
+        }
+        mapMaker.on('click', onMarkerClick)
 
+    })
+};
 
-        /////////over
-
-        
-    }
-    mapMaker.on('click', onMarkerClick)
-
-})
-}
-
-
+//关闭侧边栏
 $('.map-sid-close').click(function () {
     $('.map-sidebar').animate({
         right: "-340px",
     }, 700);
-})
-
-
-
-
-
-/* var map = new AMap.Map('container', {
-    zoom:11,//级别
-    center: [106.550281,29.563022],//中心点坐标
-    viewMode:'3D'//使用3D视图
 });
 
- // 点标记显示内容，HTML要素字符串
- var markerContent = `
-    <div class="mark-wrap">重庆市万州区
-    <span class="jiantou"><i class="bottom-arrow"></i></span>
-    </div>
- `
-
- var marker = new AMap.Marker({
-    position: [106.550281,29.563022],
-    // 将 html 传给 content
-    content: markerContent,
-    // 以 icon 的 [center bottom] 为原点
-    offset: new AMap.Pixel(-13, -30)
-});
-
-
-///////////////////////////
-var infoWindow = new AMap.InfoWindow({ //创建信息窗体
-    isCustom: true,  //使用自定义窗体
-    content:'<div class="self-a-c">信息窗体</div>', //信息窗体的内容可以是任意html片段
-    offset: new AMap.Pixel(16, -45)
-});
-var onMarkerClick  =  function(e) {
-    infoWindow.open(map, e.target.getPosition());//打开信息窗体
-    //e.target就是被点击的Marker
-    console.log(e.target)
-} 
-
-
-
-
-// 将 markers 添加到地图
-map.add(marker);
-
-
-marker.on('click',onMarkerClick);//绑定click事件 */
 
 
 //页面事件
@@ -164,11 +95,11 @@ $('.add-position-btn').click(function () {
     $('.add-position-alert').show();
     $('.addjd').val("")
     $('.addwd').val("")
-})
+});
 
 $('.submit-c').click(function () {
     $('.add-position-alert').hide();
-})
+});
 
 //为地图注册click事件获取鼠标点击出的经纬度坐标
 map.on('click', function (e) {
@@ -176,7 +107,7 @@ map.on('click', function (e) {
     $('.addwd').val(e.lnglat.getLat())
 });
 
-
+///////////////////////////////////////////////
 
 var ISADMIN; //判断是否管理员
 $.ajax({
@@ -184,93 +115,118 @@ $.ajax({
     url: "/judgmentIsAdmin",
     dataType: "json",
     success: function (response) {
-       ISADMIN =  response.content.isAdmin
+        ISADMIN = response.content.isAdmin
+    }
+});
+
+//获取区域信息
+$.ajax({
+    type: "get",
+    url: "/findAreaList",
+    dataType: "json",
+    success: function (response) {
+        var data = response.content;
+        var ele = "";
+        for(var i=0;i<data.length;i++){
+            ele += '<option value='+data[i].id+'>'+data[i].region_name+'</option>'
+        }
+        $('.xzquyu').append(ele)
     }
 });
 
 
-$('body').on('click','.j-lxsz',function(){
 
-var getTpl = document.getElementById('demo-map-huanjing').innerHTML
-    ,view = document.getElementById('mybody');
-console.log(getTpl)
-console.log(view)
-    layui.use('laytpl', function(){
-      var laytpl = layui.laytpl;
-      laytpl(getTpl).render({},function(html){
-      $('body').append(getTpl)
+$('body').on('click', '.j-lxsz', function () {
+    var getTpl = document.getElementById('demo-map-huanjing').innerHTML
+        , view = document.getElementById('mybody');
+    layui.use('laytpl', function () {
+        var laytpl = layui.laytpl;
+        laytpl(getTpl).render({}, function (html) {
+            $('body').append(getTpl)
+        });
+
     });
-
-    });     
 })
 
-$('body').on('click','.alert-close',function(){
+$('body').on('click', '.alert-close', function () {
     $(this).parents('.alert-mask').remove()
 })
 
 
 
-$('.xzquyu').change(function(e){
+$('.xzquyu').change(function (e) {
     currentVal = $(this).val()
-    if(currentVal==="0"){
+    if (currentVal === "0") {
         $('.xzgongdi').hide();
         $('.map-sidebar').removeClass('ffbg')
-    }else{
+    } else {
+        $.ajax({
+            type: "get",
+            url: "/findProjectList?start=1&display=10000&areaId="+currentVal,
+            dataType: "json",
+            success: function (response) {
+                var data = response.content;
+
+
+            }
+        });
+
+
         $('.xzgongdi').show();
         $('.map-sidebar').addClass('ffbg')
-        
+
     }
 })
 
 
-$('body').on('change','.xzgongdi',function(){
+$('body').on('change', '.xzgongdi', function () {
     var projectId = $(this).val();
 
 
-//获取项目详情
-            $.ajax({
-                type: "get",
-                url: "/findProjectInfo?projectId="+projectId,
-                dataType: "json",
-                success: function (response) {
-                    var data = response.content;
-                    var getTpl = document.getElementById('demo-map-sidebar-jbxx').innerHTML
-                    ,view = document.getElementById('map-sidebar-jbxx-view');
+    //获取项目详情
+    $.ajax({
+        type: "get",
+        url: "/findProjectInfo?projectId=" + projectId,
+        dataType: "json",
+        success: function (response) {
+            var data = response.content;
+            var getTpl = document.getElementById('demo-map-sidebar-jbxx').innerHTML
+                , view = document.getElementById('map-sidebar-jbxx-view');
 
-                    layui.use('laytpl', function(){
-                      var laytpl = layui.laytpl;
-                      laytpl(getTpl).render(data, function(html){
-                      view.innerHTML = html;
-                    });
+            layui.use('laytpl', function () {
+                var laytpl = layui.laytpl;
+                laytpl(getTpl).render(data, function (html) {
+                    view.innerHTML = html;
+                });
 
-                    }); 
-
-                    $('.big-baoqi').show()
-                }
             });
 
+            $('.big-baoqi').show()
+        }
+    });
 
-        /////////over
+
+    /////////over
 
 
 })
 
 ///修改经纬度
-$('body').on('click','.submit-s',function(){
+$('body').on('click', '.submit-s', function () {
     var projectId = $('.xzgongdi').val();
     var longitude = $('.addjd').val();
     var latitude = $('.addwd').val();
 
     $.ajax({
-                type: "get",
-                url: "/setLatitudeAndLongitude?projectId="+projectId+"&longitude="+longitude+"&latitude="+latitude,
-                dataType: "json",
-                success: function (response) {
-                   // var data = response.content;
-                   alert(response.msg)
-        
-                }
-            });
+        type: "get",
+        url: "/setLatitudeAndLongitude?projectId=" + projectId + "&longitude=" + longitude + "&latitude=" + latitude,
+        dataType: "json",
+        success: function (response) {
+            // var data = response.content;
+            alert(response.msg)
+
+        }
+    });
 
 
 })
