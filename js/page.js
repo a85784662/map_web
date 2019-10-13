@@ -1,3 +1,16 @@
+var ISADMIN; //判断是否管理员
+$.ajax({
+    type: "get",
+    url: "/judgmentIsAdmin",
+    dataType: "json",
+    success: function (response) {
+        ISADMIN = response.content.isAdmin
+        if(!ISADMIN){
+            $('.isadmin').hide()
+        }
+    }
+});
+
 //初始化高德地图
 var markers = [];
 var map = new AMap.Map('container', {
@@ -69,9 +82,9 @@ function createMarkers(markers) {
 
                     });
 
-                    $('.map-sidebar').animate({
-                        right: "0",
-                    }, 800);
+                    $('.big-baoqi').show();
+                    $('.map-sid-close').show();
+                    $('.map-sidebar').addClass('ffbg')
                 }
             });
             /////////over
@@ -85,7 +98,15 @@ function createMarkers(markers) {
 $('.map-sid-close').click(function () {
     $('.map-sidebar').animate({
         right: "-340px",
-    }, 700);
+    }, 700,function(){
+        $(".big-baoqi").hide();
+        $(".xzquyu").val("0");
+        $(".xzgongdi").val("0");
+        $('.xzgongdi').hide();
+        $('.map-sid-close').hide();
+        $('.map-sidebar').removeClass('ffbg');
+        $('.map-sidebar').animate({right:0},700)
+    });
 });
 
 
@@ -108,16 +129,6 @@ map.on('click', function (e) {
 });
 
 ///////////////////////////////////////////////
-
-var ISADMIN; //判断是否管理员
-$.ajax({
-    type: "get",
-    url: "/judgmentIsAdmin",
-    dataType: "json",
-    success: function (response) {
-        ISADMIN = response.content.isAdmin
-    }
-});
 
 //获取区域信息
 $.ajax({
@@ -162,10 +173,17 @@ $('.xzquyu').change(function (e) {
     } else {
         $.ajax({
             type: "get",
-            url: "/findProjectList?start=1&display=10000&areaId="+currentVal,
+            url: "/findProjectList?start=1&display=10&areaId="+currentVal,
             dataType: "json",
             success: function (response) {
                 var data = response.content;
+
+                var ele = "";
+                for(var i=0;i<data.length;i++){
+                    ele += '<option value='+data[i].id+'>'+data[i].name+'</option>'
+                }
+                $('.xzgongdi').append(ele)
+
 
 
             }
@@ -201,7 +219,9 @@ $('body').on('change', '.xzgongdi', function () {
 
             });
 
-            $('.big-baoqi').show()
+            $('.big-baoqi').show();
+            $('.map-sid-close').show();
+
         }
     });
 

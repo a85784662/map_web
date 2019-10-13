@@ -43,13 +43,13 @@
 
 </div> -->
 
-    <div class="map-sidebar">
-      <!-- <div class="map-sid-close"></div> -->
-      <select class="xzquyu">
+    <div class="map-sidebar l-clear">
+      <div class="map-sid-close"></div>
+      <select class="xzquyu isadmin">
         <option value="0">选择区域</option>
       </select>
-      <select class="xzgongdi">
-        <option>选择工地</option>
+      <select class="xzgongdi isadmin">
+        <option value="0">选择工地</option>
       </select>
       <div class="big-baoqi">
       <div id="map-sidebar-jbxx-view" class="l-clear"></div>
@@ -128,13 +128,13 @@
             <div class="jbxx-cnt-item-l l-left">施工单位：</div>
             <div class="jbxx-cnt-item-r l-left">{{d.work_unit}}</div>
           </div>
-          <div class="jbxx-cnt-item">
+          <div class="jbxx-cnt-item isadmin">
             <div class="jbxx-cnt-item-l l-left">经纬度：</div>
             <div class="jbxx-cnt-item-r l-left">
               <input value="{{d.longitude}}" class="add-jwd addjd" type="text">&nbsp;/&nbsp;<input value="{{d.latitude}}" class="add-jwd addwd" type="text">
             </div>
           </div>
-          <div class="jbxx-cnt-item" style="padding:10px 0">
+          <div class="jbxx-cnt-item isadmin" style="padding:10px 0">
               <button class="submit-s">点击修改经纬度</button>
           </div>
         </div>

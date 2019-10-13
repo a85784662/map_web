@@ -69,7 +69,6 @@
 
 .map-sidebar{
     width:320px;
-    overflow: hidden;
     padding:10px;
     position: absolute;
     /* right:-340px; */
@@ -93,6 +92,7 @@ background-color: #fff;
     top:50%;
     margin-top: -16px;
     cursor: pointer;
+    display: none;
 }
 
 .amap-marker-content{
