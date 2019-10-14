@@ -31,6 +31,7 @@ $.ajax({
             if (item.longitude) {
                 markerObj.add = item.construction_unit;
                 markerObj.dataid = item.id;
+                markerObj.region_id = item.region_id;
                 position.push(parseFloat(item.longitude));
                 position.push(parseFloat(item.latitude));
                 markerObj.position = position;
@@ -43,7 +44,7 @@ $.ajax({
 // 在高德地图上面生成自定义标签createMarkers方法
 function createMarkers(markers) {
     markers.forEach((marker, index) => {
-        var markerContent = `<div dataid="${marker.dataid}" class="mark-wrap">${marker.add}<span class="jiantou"><i class="bottom-arrow"></i></span></div>`
+        var markerContent = `<div areaid="${marker.region_id}" dataid="${marker.dataid}" class="mark-wrap">${marker.add}<span class="jiantou"><i class="bottom-arrow"></i></span></div>`
 
         var mapMaker = new AMap.Marker({
             position: marker.position,
@@ -57,13 +58,36 @@ function createMarkers(markers) {
 
         var onMarkerClick = function (e) {
             //e.target就是被点击的Marker
-            console.log(e.target.getPosition())
             $('.mark-wrap').removeClass('click');
             $('.bottom-arrow').removeClass('isclick');
             $(e.target.getContentDom()).find('.mark-wrap').addClass('click').find('.bottom-arrow').addClass('isclick');
             console.log($(e.target.getContentDom()).find('.mark-wrap').attr('dataid'))
             var projectId = $(e.target.getContentDom()).find('.mark-wrap').attr('dataid');
+            var areaId = $(e.target.getContentDom()).find('.mark-wrap').attr('areaId');
+            $('.xzquyu').val(areaId);
+            
+            $.ajax({
+            type: "get",
+            url: "/findProjectList?start=1&display=10&areaId="+areaId,
+            dataType: "json",
+            success: function (response) {
+                var data = response.content;
 
+                var ele = "";
+                for(var i=0;i<data.length;i++){
+                    ele += '<option value='+data[i].id+'>'+data[i].name+'</option>'
+                }
+                $('.xzgongdi').html("");
+                $('.xzgongdi').append('<option value="0">选择工地</option>')
+                $('.xzgongdi').append(ele)
+                $('.xzgongdi').val(projectId);
+                $('.big-baoqi').show();
+                $('.xzgongdi').show();
+                $('.map-sidebar').addClass('ffbg')
+                $('.map-sid-close').show();
+            }
+        });
+            
             //获取项目详情
             $.ajax({
                 type: "get",
@@ -83,6 +107,8 @@ function createMarkers(markers) {
                     });
 
                     $('.big-baoqi').show();
+                    $('.xzquyu').val(areaId);
+                    $('.xzgongdi').val(projectId);
                     $('.map-sid-close').show();
                     $('.map-sidebar').addClass('ffbg')
                 }
@@ -168,6 +194,7 @@ $('body').on('click', '.alert-close', function () {
 $('.xzquyu').change(function (e) {
     currentVal = $(this).val()
     if (currentVal === "0") {
+        $('.xzgongdi').html("");
         $('.xzgongdi').hide();
         $('.map-sidebar').removeClass('ffbg')
     } else {
@@ -182,6 +209,8 @@ $('.xzquyu').change(function (e) {
                 for(var i=0;i<data.length;i++){
                     ele += '<option value='+data[i].id+'>'+data[i].name+'</option>'
                 }
+                $('.xzgongdi').html("");
+                $('.xzgongdi').append('<option value="0">选择工地</option>')
                 $('.xzgongdi').append(ele)
 
 
