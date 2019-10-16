@@ -8,6 +8,21 @@ $.ajax({
         if(!ISADMIN){
             $('.isadmin').hide()
         }
+            
+        //获取头部统计数据（获取项目考勤统计接口）
+        $.ajax({
+            type: "get",
+            url: "/getStatisticsInfo",
+            dataType: "json",
+            success: function (response) {
+                if(ISADMIN){
+                    $('.gd-total-nub').text(response.content.projectSize);
+                }
+                    $('.kqj-total-nub').text(response.content.attSize)
+                
+            }
+        });
+        
     }
 });
 
@@ -29,7 +44,7 @@ $.ajax({
             var markerObj = {};
             var position = [];
             if (item.longitude) {
-                markerObj.add = item.construction_unit;
+                markerObj.name = item.name;
                 markerObj.dataid = item.id;
                 markerObj.region_id = item.region_id;
                 position.push(parseFloat(item.longitude));
@@ -44,7 +59,7 @@ $.ajax({
 // 在高德地图上面生成自定义标签createMarkers方法
 function createMarkers(markers) {
     markers.forEach((marker, index) => {
-        var markerContent = `<div areaid="${marker.region_id}" dataid="${marker.dataid}" class="mark-wrap">${marker.add}<span class="jiantou"><i class="bottom-arrow"></i></span></div>`
+        var markerContent = `<div areaid="${marker.region_id}" dataid="${marker.dataid}" class="mark-wrap">${marker.name}<span class="jiantou"><i class="bottom-arrow"></i></span></div>`
 
         var mapMaker = new AMap.Marker({
             position: marker.position,
@@ -111,6 +126,9 @@ function createMarkers(markers) {
                     $('.xzgongdi').val(projectId);
                     $('.map-sid-close').show();
                     $('.map-sidebar').addClass('ffbg')
+                    if(!ISADMIN){
+                        $('.isadmin').hide()
+                    }
                 }
             });
             /////////over
@@ -122,6 +140,8 @@ function createMarkers(markers) {
 
 //关闭侧边栏
 $('.map-sid-close').click(function () {
+    $('.mark-wrap').removeClass('click');
+    $('.bottom-arrow').removeClass('isclick');
     $('.map-sidebar').animate({
         right: "-340px",
     }, 700,function(){
@@ -228,8 +248,9 @@ $('.xzquyu').change(function (e) {
 
 $('body').on('change', '.xzgongdi', function () {
     var projectId = $(this).val();
-
-
+    $('.mark-wrap').removeClass('click');
+    $('.bottom-arrow').removeClass('isclick');
+    $('.mark-wrap[dataid='+projectId+']').addClass('click').find('.bottom-arrow').addClass('isclick');    
     //获取项目详情
     $.ajax({
         type: "get",
