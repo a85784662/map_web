@@ -132,6 +132,25 @@ function createMarkers(markers) {
                 }
             });
             /////////over
+            //获取设备信息统计
+    $.ajax({
+        type: "get",
+        url: "/system/getEquipmentInfo?projectId=" + projectId,
+        dataType: "json",
+        success: function (response) {
+            var getTpl = document.getElementById('gd-online-demo').innerHTML
+                , view = document.getElementById('gd-online-view');
+
+            layui.use('laytpl', function () {
+                var laytpl = layui.laytpl;
+                laytpl(getTpl).render(response, function (html) {
+                    view.innerHTML = html;
+                });
+
+            });
+
+        }
+    });
         }
         mapMaker.on('click', onMarkerClick)
 
@@ -214,7 +233,11 @@ $('.xzquyu').change(function (e) {
     if (currentVal === "0") {
         $('.xzgongdi').html("");
         $('.xzgongdi').hide();
-        $('.map-sidebar').removeClass('ffbg')
+        $('.map-sidebar').removeClass('ffbg');
+        $(".big-baoqi").hide();
+        $('.map-sid-close').hide();
+        $('.mark-wrap').removeClass('click');
+        $('.bottom-arrow').removeClass('isclick');
     } else {
         $.ajax({
             type: "get",
@@ -272,6 +295,26 @@ $('body').on('change', '.xzgongdi', function () {
 
         }
     });
+    //获取设备信息统计
+    $.ajax({
+        type: "get",
+        url: "/system/getEquipmentInfo?projectId=" + projectId,
+        dataType: "json",
+        success: function (response) {
+            var getTpl = document.getElementById('gd-online-demo').innerHTML
+                , view = document.getElementById('gd-online-view');
+
+            layui.use('laytpl', function () {
+                var laytpl = layui.laytpl;
+                laytpl(getTpl).render(response, function (html) {
+                    view.innerHTML = html;
+                });
+
+            });
+
+        }
+    });
+    
 
 
     /////////over

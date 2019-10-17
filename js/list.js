@@ -155,9 +155,31 @@ $('body').on('click', '.detail-btn', function () {
 
             });
 
+            //获取设备信息统计
+    $.ajax({
+        type: "get",
+        url: "/system/getEquipmentInfo?projectId=" + projectid,
+        dataType: "json",
+        success: function (response) {
+            var getTpl = document.getElementById('gd-online-demo2').innerHTML
+                , view = document.getElementById('gd-online-view2');
+
+            layui.use('laytpl', function () {
+                var laytpl = layui.laytpl;
+                laytpl(getTpl).render(response, function (html) {
+                    view.innerHTML = html;
+                });
+
+            });
+
+        }
+    });
+
         }
     });
     /////////over
+    console.log('wwwwwww')
+    
 
 
 

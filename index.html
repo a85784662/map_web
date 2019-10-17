@@ -58,33 +58,8 @@
         <div id="map-sidebar-jbxx-view" class="l-clear"></div>
         <div class="map-sidebar-cont">
           <div class="jbxx-t"><span class="icon_">|</span> 工地监测实时数据</div>
-          <div class="jbxx-cnt f12">
-            <table>
-              <tr>
-                <th>项目名称</th>
-                <th>设备总数</th>
-                <th>在线数</th>
-                <th>离线数</th>
-              </tr>
-              <tr class="j-lxsz">
-                <td>环境监测</td>
-                <td>25</td>
-                <td>18</td>
-                <td>7</td>
-              </tr>
-              <tr class="j-lxsz">
-                <td>升降机监测</td>
-                <td>25</td>
-                <td>18</td>
-                <td>7</td>
-              </tr>
-              <tr class="j-lxsz">
-                <td>塔吊监测</td>
-                <td>25</td>
-                <td>18</td>
-                <td>7</td>
-              </tr>
-            </table>
+          <div class="jbxx-cnt f12" id="gd-online-view">
+            
 
           </div>
         </div>
@@ -139,9 +114,34 @@
       
 </script>
 
-<!-- 考勤机列表 -->
-<script id="demo-kaoqingji-list" type="text/html">
-  
+<!-- 工地监测实时数据 -->
+<script id="gd-online-demo" type="text/html">
+  <table>
+      <tr>
+        <th>项目名称</th>
+        <th>设备总数</th>
+        <th>在线数</th>
+        <th>离线数</th>
+      </tr>
+      <tr class="j-lxsz">
+        <td>环境监测</td>
+        <td>{{d.environment.all}}</td>
+        <td>{{d.environment.line}}</td>
+        <td>{{d.environment.offLine}}</td>
+      </tr>
+      <tr class="j-lxsz">
+        <td>升降机监测</td>
+        <td>{{d.elevator.all}}</td>
+        <td>{{d.elevator.line}}</td>
+        <td>{{d.elevator.offLine}}</td>
+      </tr>
+      <tr class="j-lxsz">
+        <td>塔吊监测</td>
+        <td>{{d.crane.all}}</td>
+        <td>{{d.crane.line}}</td>
+        <td>{{d.crane.offLine}}</td>
+      </tr>
+    </table>
 </script>
 
 
