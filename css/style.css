@@ -516,11 +516,20 @@ background-color: #fff;
 .lmw-print-head{
     height: 30px;
     line-height: 30px;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: bold;
     color:#333;
     text-align: center;
+    margin:5px 0;
 }
-
+.lmw-t-cont-title{
+    padding: 4px;
+    margin-top: 4px;
+    border:1px solid #d8d8d8;
+}
+.lmw-t-cont-tit2{
+    margin-top: 10px;
+}
 /* .mgtable{
     width:100%;
     overflow: hidden;
@@ -545,6 +554,10 @@ background-color: #fff;
     width: 100px;
 }
 
+.fontbold{
+    font-weight: bold;
+}
+
 .lmw-table2 td{
     height:30px;
     line-height: 30px;
@@ -557,6 +570,30 @@ background-color: #fff;
     font-weight: bold;
 }
 
+.lmw-xh{
+    width:30px;
+}
 
+.lmw-print-button-wrap{
+    height: 50px;
+    margin-top: 15px;
+    text-align: right;
+}
+
+.lmw-print-button{
+    width:100px;
+    height: 30px;
+    background-color: #d9534f;
+    border:none;
+    cursor: pointer;
+    color:#fff;
+    font-size: 16px;
+}
+
+@media print {
+    .lmw-print-button-wrap{
+      display: none;
+    }
+  }
 
 
