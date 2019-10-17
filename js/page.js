@@ -155,8 +155,6 @@ $('.map-sid-close').click(function () {
     });
 });
 
-
-
 //页面事件
 $('.add-position-btn').click(function () {
     $('.add-position-alert').show();

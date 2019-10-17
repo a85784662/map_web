@@ -51,6 +51,11 @@
 						<th>工地ID</th>
 						<th>工地名称</th>
 						<th>工地地址</th>
+
+						<th>建设单位</th>
+						<th>监理单位</th>
+						<th>施工单位</th>
+
 						<th>考勤机个数</th>
 						<th>考勤机离线个数</th>
 						<th>操作</th>
@@ -63,9 +68,14 @@
 						<td>{{item.created_at}}</td>
 						<td>{{item.name}}</td>
 						<td>{{item.address}}</td>
+
+						<td>{{item.construction_unit}}</td>
+						<td>{{item.supervision_unit}}</td>
+						<td>{{item.work_unit}}</td>
+
 						<td>10</td>
 						<td class="lx">5</td>
-						<td class="detail-btn">查看详情</td>
+						<td projectid="{{item.id}}" class="detail-btn">查看详情</td>
 					</tr>
 					{{#  }); }}
 				</tbody>
@@ -79,31 +89,30 @@
 				<div class="xq-al-tiao l-clear">
 					<p class="title"><span>|</span>基本信息</p>
 					<div class="addre">
-						<div class="addre-l l-left">工地地址：潼南区桂林街道巴渝大道15号</div>
-						<div class="addre-l l-left">建设单位：重庆市潼南区中医院</div>
+						<div class="addre-l l-left">工地地址：{{d.address}}</div>
+						<div class="addre-l l-left">建设单位：{{d.construction_unit}}</div>
 					</div>
 					<div class="addre">
-						<div class="addre-l l-left">施工单位：重庆建工第三建设有限责任公司</div>
-						<div class="addre-l l-left">监理单位：重庆华兴工程咨询有限公司</div>
+						<div class="addre-l l-left">施工单位：{{d.work_unit}}</div>
+						<div class="addre-l l-left">监理单位：{{d.work_unit}}</div>
 					</div>
-					<div class="addre">
-						<div class="addre-l l-left">开工时间：2019-02-14</div>
-					</div>
+					<div class="jbxx-cnt-item isadmin">
+							<div class="jbxx-cnt-item-l l-left">经纬度：</div>
+							<div class="jbxx-cnt-item-r l-left">
+							  <input value="{{d.longitude}}" class="add-jwd addjd" type="text">&nbsp;/&nbsp;<input value="{{d.latitude}}" class="add-jwd addwd" type="text">
+							</div>
+						  </div>
 				</div>
 				<div class="xq-al-tiao l-clear">
 					<p class="title"><span>|</span>考勤机信息</p>
+					{{#  layui.each(d.attList, function(index, item){ }}
 					<div class="addre">
-						<div class="jbxx-cnt-item-l l-left">HM-3500w90611033</div>
+						<div class="jbxx-cnt-item-l l-left">{{item.equipment_deviceSerialNo}}</div>
 						<div class="jbxx-cnt-item-l l-left">潼南中医院工地正大门</div>
-						<div class="jbxx-cnt-item-c zaixian l-left">在线</div>
+						<div class="jbxx-cnt-item-c l-left {{item.equipment_status==='2'?'zaixian':''}}">{{item.equipment_status==="2"?"在线":"离线"}}</div>
 						<a href="#" class="jbxx-cnt-item-a l-left">查看详情</a>
 					</div>
-					<div class="addre">
-							<div class="jbxx-cnt-item-l l-left">HM-3500w90611033</div>
-							<div class="jbxx-cnt-item-l l-left">潼南中医院工地正大门</div>
-							<div class="jbxx-cnt-item-c l-left">离线</div>
-							<a href="#" class="jbxx-cnt-item-a l-left">查看详情</a>
-						</div>
+					{{#  }); }}
 				</div>
 				<div class="xq-al-tiao l-clear">
 						<p class="title"><span>|</span>工地监测实时数据</p>
