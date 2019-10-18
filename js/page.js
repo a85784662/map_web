@@ -211,8 +211,7 @@ $.ajax({
 
 
 $('body').on('click', '.j-lxsz', function () {
-    var getTpl = document.getElementById('demo-map-huanjing').innerHTML
-        , view = document.getElementById('mybody');
+    var getTpl = document.getElementById('demo-map-huanjing').innerHTML;
     layui.use('laytpl', function () {
         var laytpl = layui.laytpl;
         laytpl(getTpl).render({}, function (html) {
