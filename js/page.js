@@ -1,4 +1,5 @@
 var ISADMIN; //判断是否管理员
+var bigprojectId;//工地ID
 $.ajax({
     type: "get",
     url: "/judgmentIsAdmin",
@@ -78,6 +79,7 @@ function createMarkers(markers) {
             $(e.target.getContentDom()).find('.mark-wrap').addClass('click').find('.bottom-arrow').addClass('isclick');
             console.log($(e.target.getContentDom()).find('.mark-wrap').attr('dataid'))
             var projectId = $(e.target.getContentDom()).find('.mark-wrap').attr('dataid');
+            bigprojectId = projectId
             var areaId = $(e.target.getContentDom()).find('.mark-wrap').attr('areaId');
             $('.xzquyu').val(areaId);
             
@@ -211,15 +213,36 @@ $.ajax({
 
 
 $('body').on('click', '.j-lxsz', function () {
-    var getTpl = document.getElementById('demo-map-huanjing').innerHTML
-        , view = document.getElementById('mybody');
-    layui.use('laytpl', function () {
-        var laytpl = layui.laytpl;
-        laytpl(getTpl).render({}, function (html) {
-            $('body').append(getTpl)
+    if(!bigprojectId){
+        alert('没有项目ID');
+        return;
+    }
+    var currentType = $(this).attr('data-type');
+    if(currentType=="1"){
+        var getTpl = document.getElementById('demo-map-huanjing').innerHTML
+    }else if(currentType=="2"){
+        var getTpl = document.getElementById('demo-map-taji').innerHTML
+    }else if(currentType=="3"){
+        var getTpl = document.getElementById('demo-map-shenjiangji').innerHTML
+    }
+
+    $.ajax({
+            type: "get",
+            url: "/system/getEquipmentInfoNew?type="+currentType+"&projectCode="+bigprojectId,
+            dataType: "json",
+            success: function (response) {
+                layui.use('laytpl', function () {
+                    var laytpl = layui.laytpl;
+                    laytpl(getTpl).render(response, function (html) {
+                        $('body').append(html)
+                    });
+
+                });
+
+            }
         });
 
-    });
+    
 })
 
 $('body').on('click', '.alert-close', function () {
@@ -269,6 +292,7 @@ $('.xzquyu').change(function (e) {
 
 $('body').on('change', '.xzgongdi', function () {
     var projectId = $(this).val();
+    bigprojectId = projectId
     $('.mark-wrap').removeClass('click');
     $('.bottom-arrow').removeClass('isclick');
     $('.mark-wrap[dataid='+projectId+']').addClass('click').find('.bottom-arrow').addClass('isclick');    

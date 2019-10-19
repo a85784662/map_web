@@ -432,8 +432,22 @@ background-color: #fff;
 .alert-cnt{
     padding: 20px;
 }
+.alert-cnt.tts{
+    width:645px;
+    overflow: hidden;
+    overflow-x: scroll;
+}
 .my-alert-table{
     width: 100%;
+    font-size: 14px;
+    color:#666;
+    box-sizing: border-box;
+    text-align: center;
+    border-collapse:collapse;
+}
+
+.my-alert-table.tts{
+    width: 1000px;
     font-size: 14px;
     color:#666;
     box-sizing: border-box;

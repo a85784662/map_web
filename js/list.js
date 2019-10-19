@@ -1,4 +1,5 @@
 var LISTTOTAL, projectName = ""
+var bigprojectId;//工地ID
 $.ajax({
     type: "get",
     url: "/findProjectList?start=1&display=10",
@@ -137,7 +138,7 @@ $('.list-button').click(function () {
 //
 $('body').on('click', '.detail-btn', function () {
     var projectid = $(this).attr("projectid");
-
+    bigprojectId = projectid;
     //获取项目详情
     $.ajax({
         type: "get",
@@ -178,18 +179,53 @@ $('body').on('click', '.detail-btn', function () {
         }
     });
     /////////over
-    console.log('wwwwwww')
     
 
 
 
 
 
+});
+
+
+$('body').on('click', '.j-lxsz', function () {
+    if(!bigprojectId){
+        alert('没有项目ID');
+        return;
+    }
+    var currentType = $(this).attr('data-type');
+    if(currentType=="1"){
+        var getTpl = document.getElementById('demo-map-huanjing').innerHTML
+    }else if(currentType=="2"){
+        var getTpl = document.getElementById('demo-map-taji').innerHTML
+    }else if(currentType=="3"){
+        var getTpl = document.getElementById('demo-map-shenjiangji').innerHTML
+    }
+
+    $.ajax({
+            type: "get",
+            url: "/system/getEquipmentInfoNew?type="+currentType+"&projectCode="+bigprojectId,
+            dataType: "json",
+            success: function (response) {
+                layui.use('laytpl', function () {
+                    var laytpl = layui.laytpl;
+                    laytpl(getTpl).render(response, function (html) {
+                        $('body').append(html)
+                    });
+
+                });
+
+            }
+        });
+
+    
 })
 
 $('body').on('click', '.alert-close', function () {
     $(this).parents('.alert-mask').remove()
 })
+
+
 
 
 

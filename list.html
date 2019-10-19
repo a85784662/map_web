@@ -136,25 +136,161 @@
         <th>在线数</th>
         <th>离线数</th>
       </tr>
-      <tr class="j-lxsz">
+      <tr data-type="1" class="j-lxsz">
         <td>环境监测</td>
         <td>{{d.environment.all}}</td>
         <td>{{d.environment.line}}</td>
         <td>{{d.environment.offLine}}</td>
       </tr>
-      <tr class="j-lxsz">
+      <tr data-type="3" class="j-lxsz">
         <td>升降机监测</td>
         <td>{{d.elevator.all}}</td>
         <td>{{d.elevator.line}}</td>
         <td>{{d.elevator.offLine}}</td>
       </tr>
-      <tr class="j-lxsz">
+      <tr data-type="2" class="j-lxsz">
         <td>塔吊监测</td>
         <td>{{d.crane.all}}</td>
         <td>{{d.crane.line}}</td>
         <td>{{d.crane.offLine}}</td>
       </tr>
     </table>
+</script>
+
+<script id="demo-map-huanjing" type="text/html">
+  <div class="alert-mask">
+    <div class="alert-wrap">
+      <div class="alert-title">环境监测<span class="alert-close"></span></div>
+      <div class="alert-cnt l-clear">
+        <table class="my-alert-table">
+        <thead>
+          <tr>
+            <th>设备序列号</th>
+            <th>温度</th>
+            <th>温度</th>
+            <th>PM2.5</th>
+            <th>PM10</th>
+            <th>噪音</th>
+            <th>风速</th>
+            <th>风向</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#  layui.each(d, function(index, item){ }}
+          <tr>
+            <td>{{item.seriaNo}}</td>
+            <td>{{item.temperature}}（c）</td>
+            <td>{{item.humidity}}</td>
+            <td>{{item.pm2p5}}</td>
+            <td>{{item.pm10}}</td>
+            <td>{{item.noise}}</td>
+            <td>{{item.windSpeed}}</td>
+            <td>{{item.windDirection}}</td>
+          </tr>
+          {{#  }); }}
+        </tbody>
+      </table>
+      <div class="table-fx l-clear">
+        <div id="demo7"></div>
+      </div>
+      </div>
+      
+    </div>
+  </div>
+</script>
+
+<script id="demo-map-taji" type="text/html">
+  <div class="alert-mask">
+    <div class="alert-wrap">
+      <div class="alert-title">塔机监测<span class="alert-close"></span></div>
+      <div class="alert-cnt tts l-clear">
+        <table class="my-alert-table tts">
+        <thead>
+          <tr>
+            <th>设备序列号</th>
+            <th>采集时间</th>
+            <th>回转角度(°)</th>
+            <th>幅度(m)</th>
+            <th>吊钩高度 (m)</th>
+            <th>吊重(t)</th>
+            <th>力矩百分比(%)</th>
+            <th>安全吊重(t)</th>
+            <th>吊绳倍率</th>
+            <th>状态</th>
+          </tr>
+        </thead>
+        <tbody>
+        {{#  layui.each(d, function(index, item){ }}
+          <tr>
+            <td>{{item.seriaNo}}</td>
+            <td>{{item.recordTime}}</td>
+            <td>{{item.angle}}</td>
+            <td>{{item.radius}}</td>
+            <td>{{item.height}}</td>
+            <td>{{item.load}}</td>
+            <td>{{item.momentPer}}</td>
+            <td>{{item.safeLoad}}</td>
+            <td>{{item.fall}}</td>
+            <td>{{item.status===0?'正常':'预警'}}</td>
+          </tr>
+         {{#  }); }}
+        </tbody>
+      </table>
+      <div class="table-fx l-clear">
+        <div id="demo7"></div>
+      </div>
+      </div>
+      
+    </div>
+  </div>
+</script>
+
+<script id="demo-map-shenjiangji" type="text/html">
+  <div class="alert-mask">
+    <div class="alert-wrap">
+      <div class="alert-title">升降机监测<span class="alert-close"></span></div>
+      <div class="alert-cnt tts l-clear">
+        <table class="my-alert-table tts">
+        <thead>
+          <tr>
+            <th>设备序列号</th>
+            <th>采集时间</th>
+            <th>开始工作时间</th>
+            <th>结束工作时间</th>
+            <th>开始运行高度</th>
+            <th>结束运行高度</th>
+            <th>运行速度</th>
+            <th>本次运行载重</th>
+            <th>载重百分比</th>
+            <th>运行方向</th>
+            <th>状态</th>
+          </tr>
+        </thead>
+        <tbody>
+        {{#  layui.each(d, function(index, item){ }}
+          <tr>
+            <td>{{item.seriaNo}}</td>
+            <td>{{item.recordTime}}</td>
+            <td>{{item.startTime}}</td>
+            <td>{{item.stopTime}}</td>
+            <td>{{item.startHeight}}</td>
+            <td>{{item.stopHeight}}</td>
+            <td>{{item.speed}}</td>
+            <td>{{item.load}}</td>
+            <td>{{item.loadPercent}}</td>
+            <td>{{item.direction}}</td>
+            <td>{{item.status===0?'正常':'预警'}}</td>
+          </tr>
+         {{#  }); }}
+        </tbody>
+      </table>
+      <div class="table-fx l-clear">
+        <div id="demo7"></div>
+      </div>
+      </div>
+      
+    </div>
+  </div>
 </script>
 
 </html>
