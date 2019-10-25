@@ -1,5 +1,35 @@
-var LISTTOTAL, projectName = ""
+var LISTTOTAL
 var bigprojectId;//工地ID
+
+var ISADMIN; //判断是否管理员
+var bigprojectId;//工地ID
+$.ajax({
+    type: "get",
+    url: "/judgmentIsAdmin",
+    dataType: "json",
+    success: function (response) {
+        ISADMIN = response.content.isAdmin
+        if(!ISADMIN){
+            $('.isadmin').hide()
+        }
+            
+        //获取头部统计数据（获取项目考勤统计接口）
+        $.ajax({
+            type: "get",
+            url: "/getStatisticsInfo",
+            dataType: "json",
+            success: function (response) {
+                if(ISADMIN){
+                    $('.gd-total-nub').text(response.content.projectSize);
+                }
+                    $('.kqj-total-nub').text(response.content.attSize)
+                
+            }
+        });
+        
+    }
+});
+
 $.ajax({
     type: "get",
     url: "/findProjectList?start=1&display=10",
@@ -31,9 +61,10 @@ $.ajax({
                 , theme: '#3855ff'
                 , layout: ['prev', 'page', 'next', 'limit', 'skip']
                 , jump: function (obj) {
+                    var projectName = $('.list-input').val();
                     $.ajax({
                         type: "get",
-                        url: '/findProjectList?start=' + obj.curr + '&display=10&projectName=' + projectName,
+                        url: '/findProjectList?start=' + obj.curr + '&display='+obj.limit+'&projectName=' + projectName,
                         dataType: "json",
                         success: function (response) {
 
@@ -48,91 +79,14 @@ $.ajax({
                                 });
 
                             });
-
-
                         }
                     });
-
-
-
                 }
             });
 
         });
-
-
     }
 });
-//search
-$('.list-button').click(function () {
-    projectName = $('.list-input').val();
-    $.ajax({
-        type: "get",
-        url: '/findProjectList?start=1&display=10&projectName=' + projectName,
-        dataType: "json",
-        success: function (response) {
-            LISTTOTAL = response.paging.total;
-            var data = response.content
-            var getTpl = document.getElementById('demo-my-li-table').innerHTML
-                , view = document.getElementById('my-li-table-view');
-
-            layui.use('laytpl', function () {
-                var laytpl = layui.laytpl;
-                laytpl(getTpl).render(data, function (html) {
-                    view.innerHTML = html;
-                });
-
-            });
-
-
-            layui.use(['laypage', 'layer'], function () {
-                var laypage = layui.laypage
-                    , layer = layui.layer;
-
-                //完整功能
-                laypage.render({
-                    elem: 'demo7'
-                    , count: LISTTOTAL
-                    , theme: '#3855ff'
-                    , layout: ['prev', 'page', 'next', 'limit', 'skip']
-                    , jump: function (obj) {
-                        $.ajax({
-                            type: "get",
-                            url: '/findProjectList?start=' + obj.curr + '&display=10&projectName=' + projectName,
-                            dataType: "json",
-                            success: function (response) {
-
-                                var data = response.content
-                                var getTpl = document.getElementById('demo-my-li-table').innerHTML
-                                    , view = document.getElementById('my-li-table-view');
-
-                                layui.use('laytpl', function () {
-                                    var laytpl = layui.laytpl;
-                                    laytpl(getTpl).render(data, function (html) {
-                                        view.innerHTML = html;
-                                    });
-
-                                });
-
-
-                            }
-                        });
-
-
-
-                    }
-                });
-
-            });
-
-
-        }
-    });
-
-
-
-})
-
 
 
 //
@@ -179,12 +133,6 @@ $('body').on('click', '.detail-btn', function () {
         }
     });
     /////////over
-    
-
-
-
-
-
 });
 
 
@@ -226,9 +174,205 @@ $('body').on('click', '.alert-close', function () {
 })
 
 
+//获取区域信息
+$.ajax({
+    type: "get",
+    url: "/findAreaList",
+    dataType: "json",
+    success: function (response) {
+        var data = response.content;
+        var ele = "";
+        for(var i=0;i<data.length;i++){
+            ele += '<option value='+data[i].id+'>'+data[i].region_name+'</option>'
+        }
+        $('.xzquyu').append(ele)
+    }
+});
 
 
 
+$('.xzquyu').change(function (e) {
+    currentVal = $(this).val();
+    var projectName = $('.list-input').val();
+    if(currentVal==='0'){
+        if(projectName){
+
+            var currentUrl = "/findProjectList?start=1&display=10&projectName="+projectName;
+        }else{
+            var currentUrl = "/findProjectList?start=1&display=10"; 
+        }
+        
+    }else{
+        if(projectName){
+
+            var currentUrl = "/findProjectList?start=1&display=10&areaId="+currentVal+'&projectName=' + projectName;
+        }else{
+            var currentUrl = "/findProjectList?start=1&display=10&areaId="+currentVal;
+        }
+        
+    }
+        $.ajax({
+            type: "get",
+            url: currentUrl,
+            dataType: "json",
+            success: function (response) {
+                /* var data = response.content;
+                var ele = "";
+                for(var i=0;i<data.length;i++){
+                    ele += '<option value='+data[i].id+'>'+data[i].name+'</option>'
+                }
+                $('.xzgongdi').html("");
+                $('.xzgongdi').append('<option value="0">选择工地</option>')
+                $('.xzgongdi').append(ele) */
+                ///////////////
+                LISTTOTAL = response.paging.total;
+                var data = response.content
+                var getTpl = document.getElementById('demo-my-li-table').innerHTML
+                    , view = document.getElementById('my-li-table-view');
+    
+                layui.use('laytpl', function () {
+                    var laytpl = layui.laytpl;
+                    laytpl(getTpl).render(data, function (html) {
+                        view.innerHTML = html;
+                    });
+    
+                });
+    
+    
+                layui.use(['laypage', 'layer'], function () {
+                    var laypage = layui.laypage
+                        , layer = layui.layer;
+    
+                    //完整功能
+                    laypage.render({
+                        elem: 'demo7'
+                        , count: LISTTOTAL
+                        , theme: '#3855ff'
+                        , layout: ['prev', 'page', 'next', 'limit', 'skip']
+                        , jump: function (obj) {
+                            if(currentVal==='0'){
+                                var currentUr2 = '/findProjectList?start=' + obj.curr + '&display='+obj.limit+'&projectName=' + projectName;
+                            }else{
+                                var currentUr2 = '/findProjectList?start=' + obj.curr + '&display='+obj.limit+'&areaId=' + currentVal+'&projectName=' + projectName;
+                            }
+                            $.ajax({
+                                type: "get",
+                                url: currentUr2,
+                                dataType: "json",
+                                success: function (response) {
+    
+                                    var data = response.content
+                                    var getTpl = document.getElementById('demo-my-li-table').innerHTML
+                                        , view = document.getElementById('my-li-table-view');
+    
+                                    layui.use('laytpl', function () {
+                                        var laytpl = layui.laytpl;
+                                        laytpl(getTpl).render(data, function (html) {
+                                            view.innerHTML = html;
+                                        });
+    
+                                    });
+    
+    
+                                }
+                            });
+    
+    
+    
+                        }
+                    });
+    
+                });
+
+                ////////////////
+            }
+        });
+        //$('.xzgongdi').show();
+});
+/////
+//search
+$('.list-button').click(function () {
+    var  projectName = $('.list-input').val();
+    currentVal = $('.xzquyu').val();
+    
+    if(currentVal==='0'){
+        
+        if(projectName){
+            var currentUrl = "/findProjectList?start=1&display=10&projectName="+projectName;
+        }else{
+            var currentUrl = "/findProjectList?start=1&display=10";
+        }
+    }else{
+        
+        if(projectName){
+            var currentUrl = "/findProjectList?start=1&display=10&areaId="+currentVal+'&projectName=' + projectName;
+        }else{
+            var currentUrl = "/findProjectList?start=1&display=10&areaId="+currentVal;
+        }
+    }
+    $.ajax({
+        type: "get",
+        url: currentUrl,
+        dataType: "json",
+        success: function (response) {
+            LISTTOTAL = response.paging.total;
+            var data = response.content
+            var getTpl = document.getElementById('demo-my-li-table').innerHTML
+                , view = document.getElementById('my-li-table-view');
+
+            layui.use('laytpl', function () {
+                var laytpl = layui.laytpl;
+                laytpl(getTpl).render(data, function (html) {
+                    view.innerHTML = html;
+                });
+
+            });
+
+
+            layui.use(['laypage', 'layer'], function () {
+                var laypage = layui.laypage
+                    , layer = layui.layer;
+
+                //完整功能
+                laypage.render({
+                    elem: 'demo7'
+                    , count: LISTTOTAL
+                    , theme: '#3855ff'
+                    , layout: ['prev', 'page', 'next', 'limit', 'skip']
+                    , jump: function (obj) {
+                        console.log(obj)
+                        if(currentVal==='0'){
+                            var currentUr2 = '/findProjectList?start=' + obj.curr + '&display='+obj.limit+'&projectName=' + projectName;
+                        }else{
+                            var currentUr2 = '/findProjectList?start=' + obj.curr + '&display='+obj.limit+'&areaId=' + currentVal+'&projectName=' + projectName;
+                        }
+                        $.ajax({
+                            type: "get",
+                            url: currentUr2,
+                            dataType: "json",
+                            success: function (response) {
+                                var data = response.content
+                                var getTpl = document.getElementById('demo-my-li-table').innerHTML
+                                    , view = document.getElementById('my-li-table-view');
+
+                                layui.use('laytpl', function () {
+                                    var laytpl = layui.laytpl;
+                                    laytpl(getTpl).render(data, function (html) {
+                                        view.innerHTML = html;
+                                    });
+
+                                });
+
+
+                            }
+                        });
+                    }
+                });
+
+            });
+        }
+    });
+})
 
 
 

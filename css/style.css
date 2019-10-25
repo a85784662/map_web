@@ -119,7 +119,7 @@ background-color: #fff;
 }
 
 .jbxx-cnt-item{
-    height: 30px;
+    height: 33px;
     overflow: hidden;
 }
 
@@ -223,6 +223,17 @@ background-color: #fff;
     text-align: center;
     border-collapse:collapse; border:solid 1px #d8d8d8;
 }
+.my-li-table td{
+   border:solid 1px #d8d8d8;
+  }
+
+  .my-li-table th{
+    border:solid 1px #d8d8d8;
+   }
+
+  .my-li-table td.limit-w{
+      width: 135px;
+  }
 
 .my-li-table thead tr{
     height: 50px;
@@ -234,8 +245,6 @@ background-color: #fff;
 .my-li-table tbody tr{
     border-bottom: 1px solid #d8d8d8;
     height: 50px;
-    line-height: 50px;
-
 }
 
 .my-li-table tbody tr td.lx{
@@ -357,7 +366,7 @@ background-color: #fff;
 }
 
  .my-qiehuan{
-     width:120px;
+     width:204px;
      height: 50px;
      line-height: 50px;
      float: right;
@@ -389,7 +398,7 @@ background-color: #fff;
     color:#333;
 }
 .to-map.click,.to-list.click{
-    color:#13227a;
+    color:#122ed2;
 }
 
 .j-lxsz{

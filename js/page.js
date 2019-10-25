@@ -51,6 +51,7 @@ $.ajax({
                 position.push(parseFloat(item.longitude));
                 position.push(parseFloat(item.latitude));
                 markerObj.position = position;
+                markerObj.project_code = item.project_code;
                 markers.push(markerObj)
             };
         });
@@ -60,7 +61,7 @@ $.ajax({
 // 在高德地图上面生成自定义标签createMarkers方法
 function createMarkers(markers) {
     markers.forEach((marker, index) => {
-        var markerContent = `<div areaid="${marker.region_id}" dataid="${marker.dataid}" class="mark-wrap">${marker.name}<span class="jiantou"><i class="bottom-arrow"></i></span></div>`
+        var markerContent = `<div procode="${marker.project_code}" areaid="${marker.region_id}" dataid="${marker.dataid}" class="mark-wrap">${marker.name}<span class="jiantou"><i class="bottom-arrow"></i></span></div>`
 
         var mapMaker = new AMap.Marker({
             position: marker.position,
@@ -77,15 +78,15 @@ function createMarkers(markers) {
             $('.mark-wrap').removeClass('click');
             $('.bottom-arrow').removeClass('isclick');
             $(e.target.getContentDom()).find('.mark-wrap').addClass('click').find('.bottom-arrow').addClass('isclick');
-            console.log($(e.target.getContentDom()).find('.mark-wrap').attr('dataid'))
             var projectId = $(e.target.getContentDom()).find('.mark-wrap').attr('dataid');
+            var procode = $(e.target.getContentDom()).find('.mark-wrap').attr('procode');
             bigprojectId = projectId
             var areaId = $(e.target.getContentDom()).find('.mark-wrap').attr('areaId');
             $('.xzquyu').val(areaId);
             
             $.ajax({
             type: "get",
-            url: "/findProjectList?start=1&display=10&areaId="+areaId,
+            url: "/findProjectList?start=1&display=1000000&areaId="+areaId,
             dataType: "json",
             success: function (response) {
                 var data = response.content;
@@ -137,7 +138,7 @@ function createMarkers(markers) {
             //获取设备信息统计
     $.ajax({
         type: "get",
-        url: "/system/getEquipmentInfo?projectId=" + projectId,
+        url: "/system/getEquipmentInfo?projectCode=" + procode,
         dataType: "json",
         success: function (response) {
             var getTpl = document.getElementById('gd-online-demo').innerHTML
@@ -264,14 +265,14 @@ $('.xzquyu').change(function (e) {
     } else {
         $.ajax({
             type: "get",
-            url: "/findProjectList?start=1&display=10&areaId="+currentVal,
+            url: "/findProjectList?start=1&display=100000&areaId="+currentVal,
             dataType: "json",
             success: function (response) {
                 var data = response.content;
 
                 var ele = "";
                 for(var i=0;i<data.length;i++){
-                    ele += '<option value='+data[i].id+'>'+data[i].name+'</option>'
+                    ele += '<option procode='+data[i].project_code+' value='+data[i].id+'>'+data[i].name+'</option>'
                 }
                 $('.xzgongdi').html("");
                 $('.xzgongdi').append('<option value="0">选择工地</option>')
@@ -292,6 +293,7 @@ $('.xzquyu').change(function (e) {
 
 $('body').on('change', '.xzgongdi', function () {
     var projectId = $(this).val();
+    var projectCode = $(this).find("option:selected").attr("procode");
     bigprojectId = projectId
     $('.mark-wrap').removeClass('click');
     $('.bottom-arrow').removeClass('isclick');
@@ -322,7 +324,7 @@ $('body').on('change', '.xzgongdi', function () {
     //获取设备信息统计
     $.ajax({
         type: "get",
-        url: "/system/getEquipmentInfo?projectId=" + projectId,
+        url: "/system/getEquipmentInfo?projectCode=" + projectCode,
         dataType: "json",
         success: function (response) {
             var getTpl = document.getElementById('gd-online-demo').innerHTML
