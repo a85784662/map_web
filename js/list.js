@@ -1,5 +1,6 @@
 var LISTTOTAL
 var bigprojectId;//工地ID
+var KQJDETAIL;//考情就详情数组
 
 var ISADMIN; //判断是否管理员
 var bigprojectId;//工地ID
@@ -92,6 +93,7 @@ $.ajax({
 //
 $('body').on('click', '.detail-btn', function () {
     var projectid = $(this).attr("projectid");
+    var procode = $(this).attr("procode")
     bigprojectId = projectid;
     //获取项目详情
     $.ajax({
@@ -100,7 +102,8 @@ $('body').on('click', '.detail-btn', function () {
         dataType: "json",
         success: function (response) {
             //var data = JSON.parse(response.content);
-            var data = response.content
+            var data = response.content;
+            KQJDETAIL = response.content.attList;
             var getTpl = document.getElementById('demo-map-gdxiangqing').innerHTML
             layui.use('laytpl', function () {
                 var laytpl = layui.laytpl;
@@ -113,7 +116,7 @@ $('body').on('click', '.detail-btn', function () {
             //获取设备信息统计
     $.ajax({
         type: "get",
-        url: "/system/getEquipmentInfo?projectId=" + projectid,
+        url: "/system/getEquipmentInfo?projectCode=" + procode,
         dataType: "json",
         success: function (response) {
             var getTpl = document.getElementById('gd-online-demo2').innerHTML
@@ -374,7 +377,19 @@ $('.list-button').click(function () {
     });
 })
 
+//查看考情机详情
+$('body').on('click','.jbxx-cnt-item-a',function(){
+    var kqjNo = parseInt($(this).attr("data-no"));
+    var currentKqjdetail =  KQJDETAIL[kqjNo];
+    var getTpl = document.getElementById('demo-map-kqjdetail').innerHTML
+        layui.use('laytpl', function () {
+            var laytpl = layui.laytpl;
+            laytpl(getTpl).render(currentKqjdetail, function (html) {
+                $('body').append(html)
+            });
 
+        }); 
+})
 
 
 

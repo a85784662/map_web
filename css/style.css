@@ -156,6 +156,7 @@ background-color: #fff;
 .jbxx-cnt-item-a{
     font-size: 12px;
     color:#6567ee;
+    cursor: pointer;
 }
 
 .jbxx-cnt table{
@@ -396,6 +397,7 @@ background-color: #fff;
 }
 .to-map,.to-list{
     color:#333;
+    font-weight: bold;
 }
 .to-map.click,.to-list.click{
     color:#122ed2;
@@ -618,5 +620,22 @@ background-color: #fff;
       display: none;
     }
   }
+
+.kqj-detail-wrap{
+    position: absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    background-color: rgba(0,0,0,0.5);
+}
+.kqj-detail{
+    width:600px;
+    height: 500px;
+    background-color: #fff;
+    margin: 70px auto 0;
+}
+
+
 
 

@@ -17,7 +17,7 @@
 			<div class="my-qiehuan">
 				<div class="qiehuan-dt l-left" style="margin-right: 10px;"><span class="map-icon "></span> <a
 						class="to-map " href="#">工地分布图</a></div>
-				<div class="qiehuan-list l-left"><span class="list-icon click"></span> <a class="to-list "
+				<div class="qiehuan-list l-left"><span class="list-icon click"></span> <a class="to-list click"
 						href="#">管理平台</a></div>
 			</div>
 		</div>
@@ -73,7 +73,7 @@
 						<td class="limit-w">{{item.supervision_unit}}</td>
 						<td class="limit-w">{{item.work_unit}}</td>
 						<td>{{item.region_name}}</td>
-						<td projectid="{{item.id}}" class="detail-btn">查看详情</td>
+						<td procode="{{item.project_code}}" projectid="{{item.id}}" class="detail-btn">查看详情</td>
 					</tr>
 					{{#  }); }}
 				</tbody>
@@ -108,7 +108,7 @@
 						<div class="jbxx-cnt-item-l l-left">{{item.equipment_deviceSerialNo}}</div>
 						<div class="jbxx-cnt-item-l l-left">潼南中医院工地正大门</div>
 						<div class="jbxx-cnt-item-c l-left {{item.equipment_status==='2'?'zaixian':''}}">{{item.equipment_status==="2"?"在线":"离线"}}</div>
-						<a href="#" class="jbxx-cnt-item-a l-left">查看详情</a>
+            <div data-no="{{index}}" class="jbxx-cnt-item-a l-left">查看详情</div>
 					</div>
 					{{#  }); }}
 				</div>
@@ -289,6 +289,33 @@
       
     </div>
   </div>
+</script>
+
+<script id="demo-map-kqjdetail" type="text/html">
+	<div class="alert-mask">
+		<div class="alert-wrap">
+			<div class="alert-title">考勤机详情<span class="alert-close"></span></div>
+			<div class="alert-cnt l-clear">
+				<div class="xq-al-tiao l-clear">
+					<p class="title"><span>|</span>基本信息</p>
+					<div class="addre">
+						<div class="addre-l l-left">考勤机地址：{{d.equipment_address}}</div>
+						<div class="addre-l l-left">考勤机编码：{{d.equipment_deviceSerialNo}}</div>
+					</div>
+					<div class="addre">
+						<div class="addre-l l-left">考勤机位置：{{d.equipment_position}}</div>
+						<div class="addre-l l-left">考勤机状态：{{d.equipment_status==="2"?"在线":"离线"}}</div>
+          </div>
+          <div class="addre">
+						<div class="addre-l l-left">考勤机类型：{{d.type}}</div>
+          </div>
+          <div class="addre">
+						<div style="width:370px" class="l-left">项目名称：{{d.project_name}}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </script>
 
 </html>

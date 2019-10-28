@@ -1,5 +1,6 @@
 var ISADMIN; //判断是否管理员
 var bigprojectId;//工地ID
+var KQJDETAIL;//考情就详情数组
 $.ajax({
     type: "get",
     url: "/judgmentIsAdmin",
@@ -113,6 +114,7 @@ function createMarkers(markers) {
                 dataType: "json",
                 success: function (response) {
                     var data = response.content;
+                    KQJDETAIL = response.content.attList;
                     var getTpl = document.getElementById('demo-map-sidebar-jbxx').innerHTML
                         , view = document.getElementById('map-sidebar-jbxx-view');
 
@@ -305,6 +307,7 @@ $('body').on('change', '.xzgongdi', function () {
         dataType: "json",
         success: function (response) {
             var data = response.content;
+            KQJDETAIL = response.content.attList;
             var getTpl = document.getElementById('demo-map-sidebar-jbxx').innerHTML
                 , view = document.getElementById('map-sidebar-jbxx-view');
 
@@ -368,7 +371,19 @@ $('body').on('click', '.submit-s', function () {
 
 })
 
+//查看考情机详情
+$('body').on('click','.jbxx-cnt-item-a',function(){
+    var kqjNo = parseInt($(this).attr("data-no"));
+    var currentKqjdetail =  KQJDETAIL[kqjNo];
+    var getTpl = document.getElementById('demo-map-kqjdetail').innerHTML
+        layui.use('laytpl', function () {
+            var laytpl = layui.laytpl;
+            laytpl(getTpl).render(currentKqjdetail, function (html) {
+                $('body').append(html)
+            });
 
+        }); 
+})
 
 
 
