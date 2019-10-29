@@ -387,9 +387,74 @@ $('body').on('click','.jbxx-cnt-item-a',function(){
 
 
 
+//环境监测详细信息
+$('body').on('click','.j-huanjin-a-detail',function(){
+    var serialNo = $(this).attr("data-serialno").toString();
+    $.ajax({
+        type: "get",
+        url: "/system/getEnvironmentByProject?projectCode="+projectCode+"&serialNo="+serialNo,
+        dataType: "json",
+        success: function (response) {
+            var data = response.content[0];
+            var getTpl = document.getElementById('demo-huanjing-detail').innerHTML
+            layui.use('laytpl', function () {
+                var laytpl = layui.laytpl;
+                laytpl(getTpl).render(data,function (html) {
+                    $('body').append(html)
+                });
+    
+            }); 
+        }
+    });
+
+});
 
 
+//塔吊监测详细信息
+$('body').on('click','.j-taji-a-detail',function(){
+    var serialNo = $(this).attr("data-serialno")
+    $.ajax({
+        type: "get",
+        url: "/system/getCraneByProject?projectCode="+projectCode+"&serialNo="+serialNo,
+        dataType: "json",
+        success: function (response) {
+            var data = response.content[0];
+            var getTpl = document.getElementById('demo-taji-detail').innerHTML
+            layui.use('laytpl', function () {
+                var laytpl = layui.laytpl;
+                laytpl(getTpl).render(data,function (html) {
+                    $('body').append(html)
+                });
+    
+            }); 
 
+        }
+    });
+
+});
+
+//升降机监测详细信息
+$('body').on('click','.j-shengjiangji-a-detail',function(){
+    var serialNo = $(this).attr("data-serialno").toString();
+    $.ajax({
+        type: "get",
+        url: "/system/getElevatorByProject?projectCode="+projectCode+"&serialNo="+serialNo,
+        dataType: "json",
+        success: function (response) {
+            var data = response.content[0];
+            var getTpl = document.getElementById('demo-shengjiangji-detail').innerHTML
+            layui.use('laytpl', function () {
+                var laytpl = layui.laytpl;
+                laytpl(getTpl).render(data,function (html) {
+                    $('body').append(html)
+                });
+    
+            }); 
+
+        }
+    });
+
+});
 
 
 
