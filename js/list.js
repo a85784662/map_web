@@ -1,9 +1,8 @@
 var LISTTOTAL
-var bigprojectId;//工地ID
+var projectCode;//项目code
 var KQJDETAIL;//考情就详情数组
-
 var ISADMIN; //判断是否管理员
-var bigprojectId;//工地ID
+
 $.ajax({
     type: "get",
     url: "/judgmentIsAdmin",
@@ -94,7 +93,7 @@ $.ajax({
 $('body').on('click', '.detail-btn', function () {
     var projectid = $(this).attr("projectid");
     var procode = $(this).attr("procode")
-    bigprojectId = projectid;
+    projectCode = procode;
     //获取项目详情
     $.ajax({
         type: "get",
@@ -140,8 +139,8 @@ $('body').on('click', '.detail-btn', function () {
 
 
 $('body').on('click', '.j-lxsz', function () {
-    if(!bigprojectId){
-        alert('没有项目ID');
+    if(!projectCode){
+        alert('没有项目code');
         return;
     }
     var currentType = $(this).attr('data-type');
@@ -155,7 +154,7 @@ $('body').on('click', '.j-lxsz', function () {
 
     $.ajax({
             type: "get",
-            url: "/system/getEquipmentInfoNew?type="+currentType+"&projectCode="+bigprojectId,
+            url: "/system/getEquipmentInfoNew?type="+currentType+"&projectCode="+projectCode,
             dataType: "json",
             success: function (response) {
                 layui.use('laytpl', function () {

@@ -1,5 +1,5 @@
 var ISADMIN; //判断是否管理员
-var bigprojectId;//工地ID
+var projectCode;//工地code
 var KQJDETAIL;//考情就详情数组
 $.ajax({
     type: "get",
@@ -81,7 +81,7 @@ function createMarkers(markers) {
             $(e.target.getContentDom()).find('.mark-wrap').addClass('click').find('.bottom-arrow').addClass('isclick');
             var projectId = $(e.target.getContentDom()).find('.mark-wrap').attr('dataid');
             var procode = $(e.target.getContentDom()).find('.mark-wrap').attr('procode');
-            bigprojectId = projectId
+            projectCode = procode
             var areaId = $(e.target.getContentDom()).find('.mark-wrap').attr('areaId');
             $('.xzquyu').val(areaId);
             
@@ -216,8 +216,8 @@ $.ajax({
 
 
 $('body').on('click', '.j-lxsz', function () {
-    if(!bigprojectId){
-        alert('没有项目ID');
+    if(!projectCode){
+        alert('没有项目code');
         return;
     }
     var currentType = $(this).attr('data-type');
@@ -231,7 +231,7 @@ $('body').on('click', '.j-lxsz', function () {
 
     $.ajax({
             type: "get",
-            url: "/system/getEquipmentInfoNew?type="+currentType+"&projectCode="+bigprojectId,
+            url: "/system/getEquipmentInfoNew?type="+currentType+"&projectCode="+projectCode,
             dataType: "json",
             success: function (response) {
                 layui.use('laytpl', function () {
