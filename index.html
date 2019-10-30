@@ -152,9 +152,9 @@
 <script id="demo-map-huanjing" type="text/html">
   <div class="alert-mask">
     <div class="alert-wrap">
-      <div class="alert-title">环境监测<span class="alert-close"></span></div>
-      <div class="alert-cnt l-clear">
-        <table class="my-alert-table">
+      <div class="alert-title">环境监测最新一条数据<span class="alert-close"></span></div>
+      <div class="alert-cnt tts l-clear">
+        <table class="my-alert-table tts">
         <thead>
           <tr>
             <th>设备序列号</th>
@@ -170,7 +170,7 @@
         <tbody>
           {{#  layui.each(d, function(index, item){ }}
           <tr data-serialno="{{item.serialNo}}" class="j-huanjin-a-detail">
-            <td>{{item.serialNo}}</td>
+            <td>{{item.sourceId}}</td>
             <td>{{item.temperature}}（c）</td>
             <td>{{item.humidity}}</td>
             <td>{{item.pm2p5}}</td>
@@ -194,7 +194,7 @@
 <script id="demo-map-taji" type="text/html">
   <div class="alert-mask">
     <div class="alert-wrap">
-      <div class="alert-title">塔机监测<span class="alert-close"></span></div>
+      <div class="alert-title">塔机监测最新一条数据<span class="alert-close"></span></div>
       <div class="alert-cnt tts l-clear">
         <table class="my-alert-table tts">
         <thead>
@@ -214,7 +214,7 @@
         <tbody>
           {{#  layui.each(d, function(index, item){ }}
           <tr data-serialno="{{item.serialNo}}" class="j-taji-a-detail">
-            <td>{{item.serialNo}}</td>
+            <td>{{item.sourceId}}</td>
             <td>{{item.recordTime}}</td>
             <td>{{item.angle}}</td>
             <td>{{item.radius}}</td>
@@ -240,7 +240,7 @@
 <script id="demo-map-shenjiangji" type="text/html">
   <div class="alert-mask">
     <div class="alert-wrap">
-      <div class="alert-title">升降机监测<span class="alert-close"></span></div>
+      <div class="alert-title">升降机监测最新一条数据<span class="alert-close"></span></div>
       <div class="alert-cnt tts l-clear">
         <table class="my-alert-table tts">
         <thead>
@@ -261,7 +261,7 @@
         <tbody>
           {{#  layui.each(d, function(index, item){ }}
           <tr data-serialno="{{item.serialNo}}" class="j-shengjiangji-a-detail">
-            <td>{{item.serialNo}}</td>
+            <td>{{item.sourceId}}</td>
             <td>{{item.recordTime}}</td>
             <td>{{item.startTime}}</td>
             <td>{{item.stopTime}}</td>
@@ -298,7 +298,7 @@
 					</div>
 					<div class="addre">
 						<div class="addre-l l-left">考勤机位置：{{d.equipment_position}}</div>
-						<div class="addre-l l-left">考勤机状态：{{d.equipment_status==="2"?"在线":"离线"}}</div>
+						<div class="addre-l l-left">考勤机状态：{{d.equipment_status==="2"?"在·线":"离线"}}</div>
           </div>
           <div class="addre">
 						<div class="addre-l l-left">考勤机类型：{{d.type}}</div>
@@ -314,46 +314,57 @@
 
 
 <script id="demo-taji-detail" type="text/html">
-  <div class="alert-mask">
+  <div class="alert-mask2">
     <div class="alert-wrap">
-      <div class="alert-title">塔机监测详情<span class="alert-close"></span></div>
-      <div class="alert-cnt l-clear">
-        <div class="addre">
-          <div class="l-clear">
-              <div class="mw-addre-ts l-left">设备物理编号：{{d.serialNo}}</div>
+      <div class="alert-title">所有塔机监测信息<span class="alert-close"></span></div>
+      <div class="alert-cnt tts l-clear">
+          <table class="my-alert-table tts2">
+            <thead>
+              <tr>
+                <th>设备物理编号</th>
+                <th>项目唯一编码</th>
+                <th>来源数据ID：</th>
+                <th>采集时间：</th>
+                <th>回转角度（正北方向为正）</th>
+                <th>幅度</th>
+                <th>吊钩高度</th>
+                <th>吊重</th>
+                <th>安全吊重</th>
+                <th>力矩百分比（%）</th>
+                <th>风速（m/s）</th>
+                <th>塔机倾斜角度</th>
+                <th>塔机方向</th>
+                <th>吊绳倍率</th>
+                <th>状态</th>
+                <th>提供塔吊数据公司</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#  layui.each(d, function(index, item){ }}
+              <tr>
+                <td>{{item.serialNo}}</td>
+                <td>{{item.projectCode}}</td>
+                <td>{{item.sourceId}}</td>
+                <td>{{item.recordTime}}</td>
+                <td>{{item.angle}}</td>
+                <td>{{item.radius}}</td>
+                <td>{{item.height}}</td>
+                <td>{{item.load}}</td>
+                <td>{{item.safeLoad}}</td>
+                <td>{{item.momentPer}}</td>
+                <td>{{item.windSpeed}}</td>
+                <td>{{item.obliquity}}</td>
+                <td>{{item.obliquityDirAnge}}</td>
+                <td>{{item.fall}}</td>
+                <td>{{item.status===0?'正常':'预警'}}</td>
+                <td>{{item.comFromName}}</td>
+              </tr>
+             {{#  }); }}
+            </tbody>
+          </table>
+          <div class="table-fx l-clear">
+            <div id="demo8"></div>
           </div>
-          <div class="l-clear">
-              <div class="mw-addre-l l-left">项目唯一编码：{{d.projectCode}}</div>
-              <div class="mw-addre-l l-left">来源数据ID：{{d.sourceId}}</div>
-          </div>
-          <div class="l-clear">
-              <div class="mw-addre-l l-left">采集时间：{{d.recordTime}}</div>
-              <div class="mw-addre-l l-left">回转角度（正北方向为正）：{{d.angle}}</div>
-          </div>
-          <div class="l-clear">
-              <div class="mw-addre-l l-left">幅度：{{d.radius}}</div>
-              <div class="mw-addre-l l-left">吊钩高度：{{d.height}}</div>
-          </div>
-          <div class="l-clear">
-              <div class="mw-addre-l l-left">吊重：{{d.load}}</div>
-              <div class="mw-addre-l l-left">安全吊重：{{d.safeLoad}}</div>
-          </div>
-          <div class="l-clear">
-              <div class="mw-addre-l l-left">力矩百分比（%）：{{d.momentPer}}</div>
-              <div class="mw-addre-l l-left">风速（m/s）：{{d.windSpeed}}</div>
-          </div>
-          <div class="l-clear">
-              <div class="mw-addre-l l-left">塔机倾斜角度：{{d.obliquity}}</div>
-              <div class="mw-addre-l l-left">塔机方向：{{d.obliquityDirAnge}}</div>
-          </div>
-          <div class="l-clear">
-              <div class="mw-addre-l l-left">吊绳倍率：{{d.fall}}</div>
-              <div class="mw-addre-l l-left">塔机状态：{{d.status==="0"?"正常":"预警"}}</div>
-          </div>
-          <div class="l-clear">
-              <div class="mw-addre-l l-left">提供塔吊数据公司：{{d.comFromName}}</div>
-          </div>
-          
         </div>
       </div>
       
@@ -362,35 +373,46 @@
 </script>
 
 <script id="demo-huanjing-detail" type="text/html">
-  <div class="alert-mask">
+  <div class="alert-mask2">
     <div class="alert-wrap">
-      <div class="alert-title">环境监测详情<span class="alert-close"></span></div>
-      <div class="alert-cnt l-clear">
-        <div class="addre">
-          <div class="l-clear">
-              <div class="mw-addre-ts l-left">设备物理编号：{{d.serialNo}}</div>
-          </div>
-          <div class="l-clear">
-              <div class="mw-addre-l l-left">项目唯一编码：{{d.projectCode}}</div>
-              <div class="mw-addre-l l-left">来源数据ID：{{d.sourceId}}</div>
-          </div>
-          <div class="l-clear">
-              <div class="mw-addre-l l-left">采集时间：{{d.recordTime}}</div>
-              <div class="mw-addre-l l-left">温度：{{d.temperature}}</div>
-          </div>
-          <div class="l-clear">
-              <div class="mw-addre-l l-left">湿度：{{d.humidity}}</div>
-              <div class="mw-addre-l l-left">PM2.5：{{d.pm2p5}}</div>
-          </div>
-          <div class="l-clear">
-              <div class="mw-addre-l l-left">PM10：{{d.pm10}}</div>
-              <div class="mw-addre-l l-left">噪声：{{d.noise}}</div>
-          </div>
-          <div class="l-clear">
-              <div class="mw-addre-l l-left">风速：{{d.windSpeed}}</div>
-              <div class="mw-addre-l l-left">风向：{{d.windDirection}}</div>
-          </div>
- 
+      <div class="alert-title">所有环境监测信息<span class="alert-close"></span></div>
+      <div class="alert-cnt tts l-clear">
+        <table class="my-alert-table tts2">
+          <thead>
+            <tr>
+              <th>设备物理编号</th>
+              <th>项目唯一编码</th>
+              <th>来源数据ID：</th>
+              <th>采集时间：</th>
+              <th>温度</th>
+              <th>湿度</th>
+              <th>PM2.5</th>
+              <th>PM10</th>
+              <th>噪声</th>
+              <th>风速（m/s）</th>
+              <th>风向</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#  layui.each(d, function(index, item){ }}
+            <tr>
+              <td>{{item.serialNo}}</td>
+              <td>{{item.projectCode}}</td>
+              <td>{{item.sourceId}}</td>
+              <td>{{item.recordTime}}</td>
+              <td>{{item.temperature}}</td>
+              <td>{{item.humidity}}</td>
+              <td>{{item.pm2p5}}</td>
+              <td>{{item.pm10}}</td>
+              <td>{{item.noise}}</td>
+              <td>{{item.windSpeed}}</td>
+              <td>{{item.windDirection}}</td>
+            </tr>
+           {{#  }); }}
+          </tbody>
+        </table>
+        <div class="table-fx l-clear">
+          <div id="demo9"></div>
         </div>
       </div>
       
@@ -399,38 +421,50 @@
 </script>
 
 <script id="demo-shengjiangji-detail" type="text/html">
-  <div class="alert-mask">
+  <div class="alert-mask2">
     <div class="alert-wrap">
-      <div class="alert-title">升降机监测详情<span class="alert-close"></span></div>
-      <div class="alert-cnt l-clear">
-        <div class="addre">
-          <div class="l-clear">
-              <div class="mw-addre-ts l-left">设备物理编号：{{d.serialNo}}</div>
-          </div>
-          <div class="l-clear">
-              <div class="mw-addre-l l-left">项目唯一编码：{{d.projectCode}}</div>
-              <div class="mw-addre-l l-left">来源数据ID：{{d.sourceId}}</div>
-          </div>
-          <div class="l-clear">
-              <div class="mw-addre-l l-left">采集时间：{{d.recordTime}}</div>
-              <div class="mw-addre-l l-left">开始工作时间：{{d.startTime}}</div>
-          </div>
-          <div class="l-clear">
-              <div class="mw-addre-l l-left">停止工作时间：{{d.stopTime}}</div>
-              <div class="mw-addre-l l-left">开始运行高度：{{d.startHeight}}</div>
-          </div>
-          <div class="l-clear">
-              <div class="mw-addre-l l-left">停止运行高度：{{d.stopHeight}}</div>
-              <div class="mw-addre-l l-left">运行速度：{{d.speed}}</div>
-          </div>
-          <div class="l-clear">
-              <div class="mw-addre-l l-left">本次运行载重：{{d.load}}</div>
-              <div class="mw-addre-l l-left">本次运行最大载重百分比：{{d.loadPercent}}</div>
-          </div>
-          <div class="l-clear">
-              <div class="mw-addre-l l-left">运行方向：{{d.direction}}</div>
-              <div class="mw-addre-l l-left">状态：{{d.status==="0"?"正常":"预警"}}</div>
-          </div>
+      <div class="alert-title">所有升降机监测信息<span class="alert-close"></span></div>
+      <div class="alert-cnt tts l-clear">
+        <table class="my-alert-table tts2">
+          <thead>
+            <tr>
+              <th>设备物理编号</th>
+              <th>项目唯一编码</th>
+              <th>来源数据ID：</th>
+              <th>采集时间：</th>
+              <th>开始工作时间</th>
+              <th>停止工作时间</th>
+              <th>开始运行高度</th>
+              <th>停止运行高度</th>
+              <th>运行速度</th>
+              <th>本次运行载重</th>
+              <th>本次运行最大载重百分比</th>
+              <th>运行方向</th>
+              <th>状态</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#  layui.each(d, function(index, item){ }}
+            <tr>
+              <td>{{item.serialNo}}</td>
+              <td>{{item.projectCode}}</td>
+              <td>{{item.sourceId}}</td>
+              <td>{{item.recordTime}}</td>
+              <td>{{item.startTime}}</td>
+              <td>{{item.stopTime}}</td>
+              <td>{{item.startHeight}}</td>
+              <td>{{item.stopHeight}}</td>
+              <td>{{item.speed}}</td>
+              <td>{{item.load}}</td>
+              <td>{{item.loadPercent}}</td>
+              <td>{{item.direction}}</td>
+              <td>{{item.status===0?'正常':'预警'}}</td>
+            </tr>
+           {{#  }); }}
+          </tbody>
+        </table>
+        <div class="table-fx l-clear">
+          <div id="demo10"></div>
         </div>
       </div>
       
@@ -438,7 +472,7 @@
   </div>
 </script>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   layui.use(['laypage', 'layer'], function () {
     var laypage = layui.laypage
       , layer = layui.layer;
@@ -455,6 +489,6 @@
     });
 
   });
-</script>
+</script> -->
 
 </html>

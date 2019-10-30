@@ -412,7 +412,7 @@ background-color: #fff;
 }
 
 
-.alert-mask{
+.alert-mask,.alert-mask2{
     background-color: rgba(0,0,0,0.6);
     position: fixed;
     left:0;
@@ -442,12 +442,15 @@ background-color: #fff;
 }
 .alert-cnt{
     padding: 20px;
+    max-height: 500px;
 }
 .alert-cnt.tts{
     width:645px;
     overflow: hidden;
     overflow-x: scroll;
+    overflow-y:scroll;
 }
+
 .my-alert-table{
     width: 100%;
     font-size: 14px;
@@ -466,6 +469,15 @@ background-color: #fff;
     border-collapse:collapse;
 }
 
+.my-alert-table.tts2{
+    width: 1600px;
+    font-size: 14px;
+    color:#666;
+    box-sizing: border-box;
+    text-align: center;
+    border-collapse:collapse;
+}
+
 .my-alert-table thead tr{
     height: 30px;
     line-height: 30px;
@@ -473,11 +485,16 @@ background-color: #fff;
     color:#333;
 }
 
+
 .my-alert-table tbody tr{
     height: 30px;
     line-height: 30px;
     color:#666;
     cursor: pointer;
+}
+
+.my-alert-table tbody tr:nth-child(odd){
+    background-color:#eeeeee;
 }
 
 .alert-close{
