@@ -175,7 +175,7 @@ $('body').on('click', '.alert-close', function () {
     $(this).parents('.alert-mask').remove()
 })
 $('body').on('click', '.alert-close', function () {
-    $(this).parents('.alert-mask2').remove()
+    $(this).parents('.alert-mask2').hide()
 })
 
 
@@ -393,16 +393,21 @@ $('body').on('click','.jbxx-cnt-item-a',function(){
         }); 
 });
 
-
 //所有环境监测信息
 $('body').on('click','.j-huanjin-a-detail',function(){
-    var serialNo = $(this).attr("data-serialno").toString();
+    var sourceId = $(this).attr("data-serialno").toString();
     $.ajax({
         type: "get",
-        url: "/system/getEnvironmentByProject?projectCode="+projectCode+"&serialNo="+serialNo,
+        url: "/system/getEnvironmentByProject?projectCode="+projectCode+"&sourceId="+sourceId,
         dataType: "json",
         success: function (response) {
             var data = response.content;
+            if(data.length>0){
+                $('.alert-mask2').show();
+            }else{
+                alert(暂时没有数据)
+                return
+            }
             var getTpl = document.getElementById('demo-huanjing-detail').innerHTML
             var totalPages = response.totalPages
             ////////////
@@ -410,9 +415,8 @@ $('body').on('click','.j-huanjin-a-detail',function(){
             layui.use(['laypage', 'layer','laytpl'], function () {
                 var laytpl = layui.laytpl;
                 laytpl(getTpl).render(data,function (html) {
-                    $('body').append(html)
+                    $('.alert-wrap-view').html(html)
                 });
-                var laytplRenderInit = false;
                 //
                 var laypage = layui.laypage
                     , layer = layui.layer;
@@ -422,12 +426,9 @@ $('body').on('click','.j-huanjin-a-detail',function(){
                         , theme: '#3855ff'
                         , layout: ['prev', 'page', 'next', 'skip']
                         , jump: function (obj) {
-                            if(laytplRenderInit){
-                                
-                                $('.alert-mask2').remove()
                                 $.ajax({
                                     type: "get",
-                                    url: "/system/getEnvironmentByProject?projectCode="+projectCode+"&serialNo="+serialNo+"&page="+obj.curr,
+                                    url: "/system/getEnvironmentByProject?projectCode="+projectCode+"&sourceId="+sourceId+"&page="+obj.curr,
                                     dataType: "json",
                                     success: function (response) {
             
@@ -436,17 +437,17 @@ $('body').on('click','.j-huanjin-a-detail',function(){
                                         layui.use('laytpl', function () {
                                             var laytpl = layui.laytpl;
                                             laytpl(getTpl).render(data,function (html) {
-                                                $('body').append(html)
+                                                $('.alert-wrap-view').html(html)
                                             });
                                 
                                         }); 
                                     }
                                 });
-                            }
+                            
                             
                         }
                     });
-                    laytplRenderInit = true;
+
             });
             ////
         }
@@ -457,13 +458,19 @@ $('body').on('click','.j-huanjin-a-detail',function(){
 
 //所有塔机监测信息
 $('body').on('click','.j-taji-a-detail',function(){
-    var serialNo = $(this).attr("data-serialno")
+    var sourceId = $(this).attr("data-serialno")
     $.ajax({
         type: "get",
-        url: "/system/getCraneByProject?projectCode="+projectCode+"&serialNo="+serialNo,
+        url: "/system/getCraneByProject?projectCode="+projectCode+"&sourceId="+sourceId,
         dataType: "json",
         success: function (response) {
             var data = response.content;
+            if(data.length>0){
+                $('.alert-mask2').show();
+            }else{
+                alert(暂时没有数据)
+                return
+            }
             var getTpl = document.getElementById('demo-taji-detail').innerHTML
             var totalPages = response.totalPages
             ////////////
@@ -471,24 +478,20 @@ $('body').on('click','.j-taji-a-detail',function(){
             layui.use(['laypage', 'layer','laytpl'], function () {
                 var laytpl = layui.laytpl;
                 laytpl(getTpl).render(data,function (html) {
-                    $('body').append(html)
+                    $('.alert-wrap-view').html(html)
                 });
                 //
-                var laytplRenderInit = false;
                 var laypage = layui.laypage
                     , layer = layui.layer;
                     laypage.render({
-                        elem: 'demo8'
+                        elem: 'demo9'
                         , count: totalPages
                         , theme: '#3855ff'
                         , layout: ['prev', 'page', 'next', 'skip']
                         , jump: function (obj) {
-                            if(laytplRenderInit){
-                                
-                                $('.alert-mask2').remove()
                                 $.ajax({
                                     type: "get",
-                                    url: "/system/getCraneByProject?projectCode="+projectCode+"&serialNo="+serialNo+"&page="+obj.curr,
+                                    url: "/system/getCraneByProject?projectCode="+projectCode+"&sourceId="+sourceId+"&page="+obj.curr,
                                     dataType: "json",
                                     success: function (response) {
             
@@ -497,17 +500,17 @@ $('body').on('click','.j-taji-a-detail',function(){
                                         layui.use('laytpl', function () {
                                             var laytpl = layui.laytpl;
                                             laytpl(getTpl).render(data,function (html) {
-                                                $('body').append(html)
+                                                $('.alert-wrap-view').html(html)
                                             });
                                 
                                         }); 
                                     }
                                 });
-                            }
+                            
                             
                         }
                     });
-                    laytplRenderInit = true;
+
             });
 
             /////////////
@@ -519,37 +522,39 @@ $('body').on('click','.j-taji-a-detail',function(){
 
 //所有升降机监测信息
 $('body').on('click','.j-shengjiangji-a-detail',function(){
-    var serialNo = $(this).attr("data-serialno").toString();
+    var sourceId = $(this).attr("data-serialno").toString();
     $.ajax({
         type: "get",
-        url: "/system/getElevatorByProject?projectCode="+projectCode+"&serialNo="+serialNo,
+        url: "/system/getElevatorByProject?projectCode="+projectCode+"&sourceId="+sourceId,
         dataType: "json",
         success: function (response) {
             var data = response.content;
+            if(data.length>0){
+                $('.alert-mask2').show();
+            }else{
+                alert(暂时没有数据)
+                return
+            }
             var getTpl = document.getElementById('demo-shengjiangji-detail').innerHTML
             var totalPages = response.totalPages
             ///////
             layui.use(['laypage', 'layer','laytpl'], function () {
                 var laytpl = layui.laytpl;
                 laytpl(getTpl).render(data,function (html) {
-                    $('body').append(html)
+                    $('.alert-wrap-view').html(html)
                 });
                 //
-                var laytplRenderInit = false
                 var laypage = layui.laypage
                     , layer = layui.layer;
                     laypage.render({
-                        elem: 'demo10'
+                        elem: 'demo9'
                         , count: totalPages
                         , theme: '#3855ff'
                         , layout: ['prev', 'page', 'next', 'skip']
                         , jump: function (obj) {
-                            if(laytplRenderInit){
-                                
-                                $('.alert-mask2').remove()
                                 $.ajax({
                                     type: "get",
-                                    url: "/system/getElevatorByProject?projectCode="+projectCode+"&serialNo="+serialNo+"&page="+obj.curr,
+                                    url: "/system/getElevatorByProject?projectCode="+projectCode+"&sourceId="+sourceId+"&page="+obj.curr,
                                     dataType: "json",
                                     success: function (response) {
             
@@ -558,17 +563,17 @@ $('body').on('click','.j-shengjiangji-a-detail',function(){
                                         layui.use('laytpl', function () {
                                             var laytpl = layui.laytpl;
                                             laytpl(getTpl).render(data,function (html) {
-                                                $('body').append(html)
+                                                $('.alert-wrap-view').html(html)
                                             });
                                 
                                         }); 
                                     }
                                 });
-                            }
+                            
                             
                         }
                     });
-                    laytplRenderInit = true;
+
             });
 
             /////////////
@@ -577,7 +582,6 @@ $('body').on('click','.j-shengjiangji-a-detail',function(){
     });
 
 });
-
 
 
 

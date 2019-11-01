@@ -412,7 +412,7 @@ background-color: #fff;
 }
 
 
-.alert-mask,.alert-mask2{
+.alert-mask{
     background-color: rgba(0,0,0,0.6);
     position: fixed;
     left:0;
@@ -422,7 +422,37 @@ background-color: #fff;
     z-index: 888;
 }
 
+
+.alert-mask2{
+    background-color: rgba(0,0,0,0.6);
+    position: fixed;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    z-index: 999;
+    display: none;
+}
+
+
+
 .alert-wrap{
+    width: 700px;
+    border-radius: 5px;
+    background-color: #fff;
+    position: absolute;
+    left: 50%;
+    top:10%;
+    margin-left: -350px;
+}
+
+.alert-wrap-view{
+    width: 700px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.alert-wrap-v-wrap{
     width: 700px;
     border-radius: 5px;
     background-color: #fff;

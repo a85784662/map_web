@@ -24,27 +24,7 @@
             href="#">管理平台</a></div>
       </div>
     </div>
-    <!--     <div class="add-position-btn"><span class="add-icon"></span> 添加工地</div>
 
-<div class="add-position-alert">
-  <div class="add-p-a-title">添加工地</div>
-  <div class="add-p-a-cnt">
-    <p>地址</p>
-    <input class="add-p-a-input" type="text">
-    <p>经纬度</p>
-    <div class="add-jwd-wrap l-clear">
-      <input class="add-jwd addjd" type="text">&nbsp;/&nbsp;<input class="add-jwd addwd" type="text">
-    </div>
-    <p>选择工地</p>
-    <input class="add-p-a-input" type="text">
-    <div class="add-jwd-foot l-clear">
-      <button class="submit-s">确定</button>
-      <button class="submit-c">取消</button>
-    </div>
-  </div>
-  
-
-</div> -->
 
     <div class="map-sidebar l-clear">
       <div class="map-sid-close"></div>
@@ -67,9 +47,14 @@
     </div>
   </div>
 
-<!--   <div class="kqj-detail-wrap">
-      <div class="kqj-detail"></div>
-  </div> -->
+  <div class="alert-mask2">
+        <div class="alert-wrap-v-wrap l-clear">
+            <div class="alert-wrap-view"></div>
+            <div class="table-fx l-clear">
+              <div id="demo9"></div>
+            </div>
+        </div>
+  </div>
 
 </body>
 <script src="js/jquery.min.js"></script>
@@ -169,7 +154,7 @@
         </thead>
         <tbody>
           {{#  layui.each(d, function(index, item){ }}
-          <tr data-serialno="{{item.serialNo}}" class="j-huanjin-a-detail">
+          <tr data-serialno="{{item.sourceId}}" class="j-huanjin-a-detail">
             <td>{{item.sourceId}}</td>
             <td>{{item.temperature}}（c）</td>
             <td>{{item.humidity}}</td>
@@ -213,7 +198,7 @@
         </thead>
         <tbody>
           {{#  layui.each(d, function(index, item){ }}
-          <tr data-serialno="{{item.serialNo}}" class="j-taji-a-detail">
+          <tr data-serialno="{{item.sourceId}}" class="j-taji-a-detail">
             <td>{{item.sourceId}}</td>
             <td>{{item.recordTime}}</td>
             <td>{{item.angle}}</td>
@@ -260,7 +245,7 @@
         </thead>
         <tbody>
           {{#  layui.each(d, function(index, item){ }}
-          <tr data-serialno="{{item.serialNo}}" class="j-shengjiangji-a-detail">
+          <tr data-serialno="{{item.sourceId}}" class="j-shengjiangji-a-detail">
             <td>{{item.sourceId}}</td>
             <td>{{item.recordTime}}</td>
             <td>{{item.startTime}}</td>
@@ -314,16 +299,15 @@
 
 
 <script id="demo-taji-detail" type="text/html">
-  <div class="alert-mask2">
-    <div class="alert-wrap">
+
       <div class="alert-title">所有塔机监测信息<span class="alert-close"></span></div>
       <div class="alert-cnt tts l-clear">
           <table class="my-alert-table tts2">
             <thead>
               <tr>
-                <th>设备物理编号</th>
-                <th>项目唯一编码</th>
                 <th>来源数据ID：</th>
+                <th>项目唯一编码</th>
+                <th>设备物理编号</th>
                 <th>采集时间：</th>
                 <th>回转角度（正北方向为正）</th>
                 <th>幅度</th>
@@ -342,9 +326,9 @@
             <tbody>
               {{#  layui.each(d, function(index, item){ }}
               <tr>
-                <td>{{item.serialNo}}</td>
-                <td>{{item.projectCode}}</td>
                 <td>{{item.sourceId}}</td>
+                <td>{{item.projectCode}}</td>
+                <td>{{item.serialNo}}</td>
                 <td>{{item.recordTime}}</td>
                 <td>{{item.angle}}</td>
                 <td>{{item.radius}}</td>
@@ -362,27 +346,21 @@
              {{#  }); }}
             </tbody>
           </table>
-          <div class="table-fx l-clear">
-            <div id="demo8"></div>
-          </div>
         </div>
-      </div>
-      
-    </div>
-  </div>
+
 </script>
 
 <script id="demo-huanjing-detail" type="text/html">
-  <div class="alert-mask2">
-    <div class="alert-wrap">
+  
+    
       <div class="alert-title">所有环境监测信息<span class="alert-close"></span></div>
       <div class="alert-cnt tts l-clear">
         <table class="my-alert-table tts2">
           <thead>
             <tr>
-              <th>设备物理编号</th>
-              <th>项目唯一编码</th>
               <th>来源数据ID：</th>
+              <th>项目唯一编码</th>
+              <th>设备物理编号</th>
               <th>采集时间：</th>
               <th>温度</th>
               <th>湿度</th>
@@ -396,9 +374,9 @@
           <tbody>
             {{#  layui.each(d, function(index, item){ }}
             <tr>
-              <td>{{item.serialNo}}</td>
-              <td>{{item.projectCode}}</td>
               <td>{{item.sourceId}}</td>
+              <td>{{item.projectCode}}</td>
+              <td>{{item.serialNo}}</td>
               <td>{{item.recordTime}}</td>
               <td>{{item.temperature}}</td>
               <td>{{item.humidity}}</td>
@@ -411,26 +389,22 @@
            {{#  }); }}
           </tbody>
         </table>
-        <div class="table-fx l-clear">
-          <div id="demo9"></div>
-        </div>
+        
       </div>
       
-    </div>
-  </div>
+  
 </script>
 
 <script id="demo-shengjiangji-detail" type="text/html">
-  <div class="alert-mask2">
-    <div class="alert-wrap">
+
       <div class="alert-title">所有升降机监测信息<span class="alert-close"></span></div>
       <div class="alert-cnt tts l-clear">
         <table class="my-alert-table tts2">
           <thead>
             <tr>
-              <th>设备物理编号</th>
-              <th>项目唯一编码</th>
               <th>来源数据ID：</th>
+              <th>项目唯一编码</th>
+              <th>设备物理编号</th>
               <th>采集时间：</th>
               <th>开始工作时间</th>
               <th>停止工作时间</th>
@@ -446,9 +420,9 @@
           <tbody>
             {{#  layui.each(d, function(index, item){ }}
             <tr>
-              <td>{{item.serialNo}}</td>
-              <td>{{item.projectCode}}</td>
               <td>{{item.sourceId}}</td>
+              <td>{{item.projectCode}}</td>
+              <td>{{item.serialNo}}</td>
               <td>{{item.recordTime}}</td>
               <td>{{item.startTime}}</td>
               <td>{{item.stopTime}}</td>
@@ -463,13 +437,8 @@
            {{#  }); }}
           </tbody>
         </table>
-        <div class="table-fx l-clear">
-          <div id="demo10"></div>
-        </div>
       </div>
       
-    </div>
-  </div>
 </script>
 
 <!-- <script type="text/javascript">
