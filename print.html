@@ -98,48 +98,6 @@
 
 					</tbody>
 				</table>
-				<!-- 				<p class="lmw-t-cont-tit2 fontbold">三、网络系统</p>
-				<table class="lmw-table2">
-					<thead>
-						<tr>
-							<td>设备名称</td>
-							<td>设备编号</td>
-							<td>设备数量</td>
-							<td>安装位置</td>
-							<td>备注</td>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-					</tbody>
-				</table> -->
-				<!-- 				<p class="lmw-t-cont-tit2 fontbold">四、其它</p>
-				<table class="lmw-table2">
-					<thead>
-						<tr>
-							<td>设备名称</td>
-							<td>设备编号</td>
-							<td>设备数量</td>
-							<td>安装位置</td>
-							<td>备注</td>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-					</tbody>
-				</table> -->
 
 			</div>
 		</div>
@@ -163,7 +121,18 @@
 			<button class="lmw-print-button">打 印</button>
 		</div>
 	</div>
-
+	<div class="loading-wrap">
+		<div class="loadEffect">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	</div>
 </body>
 <script src="js/jquery.min.js"></script>
 <script src="js/layui.all.js"></script>
@@ -241,11 +210,15 @@
 			$('.xzgongdi2').html("");
 			$('.xzgongdi2').append('<option value="0">选择工地</option>')
 			$('.xzgongdi2').append(ele)
+		},
+		complete:function(){
+			$('.loading-wrap').hide();
 		}
 	});
 
 	//工地选择change事件
 	$('body').on('change', '.xzgongdi2', function () {
+		$('.loading-wrap').show();
 		var projectId = $(this).val();
 		var address = $(this).find("option:selected").attr('address');
 		var work_unit = $(this).find("option:selected").attr('work_unit');
@@ -271,6 +244,9 @@
 
 				});
 
+			},
+			complete:function(){
+				$('.loading-wrap').hide();
 			}
 		});
 
@@ -291,6 +267,9 @@
 
 				});
 
+			},
+			complete:function(){
+				$('.loading-wrap').hide();
 			}
 		});
 
@@ -315,6 +294,9 @@
 
 				});
 
+			},
+			complete:function(){
+				$('.loading-wrap').hide();
 			}
 		});
 		/////////over
@@ -328,8 +310,8 @@
 
 				if (response.length > 0) {
 					$('.j-show-taji').show();
-				}else{
-					$('.j-show-taji').hide();	
+				} else {
+					$('.j-show-taji').hide();
 				}
 
 				var getTpl = document.getElementById('demo-taji').innerHTML
@@ -343,6 +325,9 @@
 				});
 
 
+			},
+			complete:function(){
+				$('.loading-wrap').hide();
 			}
 		});
 		/////////over
@@ -355,7 +340,7 @@
 			success: function (response) {
 				if (response.length > 0) {
 					$('.j-show-shengjiangji').show();
-				}else{
+				} else {
 					$('.j-show-shengjiangji').hide();
 				}
 
@@ -368,6 +353,9 @@
 					});
 
 				});
+			},
+			complete:function(){
+				$('.loading-wrap').hide();
 			}
 		});
 		/////////over
