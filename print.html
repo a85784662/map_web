@@ -14,16 +14,20 @@
 		<div class="lmw-table-wrap1 l-clear">
 			<table class="lmw-table">
 				<tr>
-					<td class="lmw-table-title">客户名称：</td>
-					<td></td>
+					<td class="lmw-table-title">工地名称：</td>
+					<td>
+						<select class="xzgongdi2">
+							<option value="0">选择工地</option>
+						</select>
+					</td>
 				</tr>
 				<tr>
-					<td class="lmw-table-title">工地名称：</td>
-					<td></td>
+					<td class="lmw-table-title">客户名称：</td>
+					<td class="j-khmc"></td>
 				</tr>
 				<tr>
 					<td class="lmw-table-title">安装地址：</td>
-					<td></td>
+					<td class="j-address"></td>
 				</tr>
 			</table>
 		</div>
@@ -34,57 +38,72 @@
 				<table class="lmw-table2">
 					<thead>
 						<tr>
-							<td class="lmw-xh">序号</td>
 							<td>设备名称</td>
+							<td>设备编号</td>
 							<td>设备数量</td>
 							<td>安装位置</td>
 							<td>备注</td>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td class="lmw-xh"></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td class="lmw-xh"></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td class="lmw-xh"></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td class="lmw-xh"></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td class="lmw-xh"></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
+					<tbody id="kaoqing-view">
+
 					</tbody>
 				</table>
 				<p class="lmw-t-cont-tit2 fontbold">二、工地环境、设备监测系统</p>
+				<table class="lmw-table2 ta-m j-show-huanjing">
+					<thead>
+						<tr>
+						<tr>
+							<td>设备名称</td>
+							<td>设备编号</td>
+							<td>设备数量</td>
+							<td>安装位置</td>
+							<td>备注</td>
+						</tr>
+						</tr>
+					</thead>
+					<tbody id="huanjing-view">
+
+					</tbody>
+				</table>
+				<table class="lmw-table2 ta-m j-show-taji">
+					<thead>
+						<tr>
+						<tr>
+							<td>设备名称</td>
+							<td>设备编号</td>
+							<td>设备数量</td>
+							<td>安装位置</td>
+							<td>备注</td>
+						</tr>
+						</tr>
+					</thead>
+					<tbody id="taji-view">
+
+					</tbody>
+				</table>
+				<table class="lmw-table2 ta-m j-show-shengjiangji">
+					<thead>
+						<tr>
+						<tr>
+							<td>设备名称</td>
+							<td>设备编号</td>
+							<td>设备数量</td>
+							<td>安装位置</td>
+							<td>备注</td>
+						</tr>
+						</tr>
+					</thead>
+					<tbody id="shengjiangji-view">
+
+					</tbody>
+				</table>
+				<!-- 				<p class="lmw-t-cont-tit2 fontbold">三、网络系统</p>
 				<table class="lmw-table2">
 					<thead>
 						<tr>
-							<td class="lmw-xh">序号</td>
 							<td>设备名称</td>
+							<td>设备编号</td>
 							<td>设备数量</td>
 							<td>安装位置</td>
 							<td>备注</td>
@@ -92,48 +111,20 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td class="lmw-xh"></td>
 							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td class="lmw-xh"></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td class="lmw-xh"></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td class="lmw-xh"></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td class="lmw-xh"></td>
 							<td></td>
 							<td></td>
 							<td></td>
 							<td></td>
 						</tr>
 					</tbody>
-				</table>
-				<p class="lmw-t-cont-tit2 fontbold">三、网络系统</p>
+				</table> -->
+				<!-- 				<p class="lmw-t-cont-tit2 fontbold">四、其它</p>
 				<table class="lmw-table2">
 					<thead>
 						<tr>
-							<td class="lmw-xh">序号</td>
 							<td>设备名称</td>
+							<td>设备编号</td>
 							<td>设备数量</td>
 							<td>安装位置</td>
 							<td>备注</td>
@@ -141,91 +132,14 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td class="lmw-xh"></td>
 							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td class="lmw-xh"></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td class="lmw-xh"></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td class="lmw-xh"></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td class="lmw-xh"></td>
 							<td></td>
 							<td></td>
 							<td></td>
 							<td></td>
 						</tr>
 					</tbody>
-				</table>
-				<p class="lmw-t-cont-tit2 fontbold">四、其它</p>
-				<table class="lmw-table2">
-					<thead>
-						<tr>
-							<td class="lmw-xh">序号</td>
-							<td>设备名称</td>
-							<td>设备数量</td>
-							<td>安装位置</td>
-							<td>备注</td>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td class="lmw-xh"></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td class="lmw-xh"></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td class="lmw-xh"></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td class="lmw-xh"></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td class="lmw-xh"></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-					</tbody>
-				</table>
+				</table> -->
 
 			</div>
 		</div>
@@ -249,14 +163,219 @@
 			<button class="lmw-print-button">打 印</button>
 		</div>
 	</div>
-	
+
 </body>
 <script src="js/jquery.min.js"></script>
-<script src="js/list.js"></script>
+<script src="js/layui.all.js"></script>
+<script id="demo-kaoqing" type="text/html">
+	{{#  layui.each(d, function(index, item){ }}
+	<tr>
+		<td style="width:70px">考勤机</td>
+		<td style="width:150px">{{item.equipment_deviceSerialNo}}</td>
+		{{#  if(index === 0){ }}
+		<td rowspan={{d.length}} style="width:70px">{{d.length}}</td>
+		{{#  } }} 
+		<td style="width:200px">{{item.equipment_position}}</td>
+		<td></td>
+	</tr>
+	{{#  }); }}
+</script>
+
+<script id="demo-huanqing" type="text/html">
+	{{#  layui.each(d, function(index, item){ }}
+	<tr>
+		<td style="width:70px">环境监测</td>
+		<td style="width:150px">{{item.sourceId}}</td>
+		{{#  if(index === 0){ }}
+		<td rowspan={{d.length}} style="width:70px">{{d.length}}</td>
+		{{#  } }} 
+		<td style="width:200px">{{item.environmentInfoAddr}}</td>
+		<td></td>
+	</tr>
+	{{#  }); }}
+</script>
+
+<script id="demo-taji" type="text/html">
+	{{#  layui.each(d, function(index, item){ }}
+	<tr>
+		<td style="width:70px">塔机监测</td>
+		<td style="width:150px">{{item.sourceId}}</td>
+		{{#  if(index === 0){ }}
+		<td rowspan={{d.length}} style="width:70px">{{d.length}}</td>
+		{{#  } }} 
+		<td style="width:200px">{{item.craneInfoAddr}}</td>
+		<td></td>
+	</tr>
+	{{#  }); }}
+</script>
+
+<script id="demo-shengjiangji" type="text/html">
+	{{#  layui.each(d, function(index, item){ }}
+	<tr>
+		<td style="width:70px">升降机监测</td>
+		<td style="width:150px">{{item.sourceId}}</td>
+		{{#  if(index === 0){ }}
+		<td rowspan={{d.length}} style="width:70px">{{d.length}}</td>
+		{{#  } }} 
+		<td style="width:200px">{{item.elevatorInfoAddr}}</td>
+		<td></td>
+	</tr>
+	{{#  }); }}
+</script>
+
 <script>
-  $('.lmw-print-button').click(function(){
-    window.print()
-  })
+	$('.lmw-print-button').click(function () {
+		window.print()
+	});
+	//工地选择初始化
+	$.ajax({
+		type: "get",
+		url: "/findProjectList?start=1&display=10000",
+		dataType: "json",
+		success: function (response) {
+			var data = response.content;
+			var ele = "";
+			for (var i = 0; i < data.length; i++) {
+				ele += '<option project_code=' + data[i].project_code + ' address=' + data[i].address + ' work_unit=' + data[i].work_unit + ' value=' + data[i].id + '>' + data[i].name + '</option>'
+			}
+			$('.xzgongdi2').html("");
+			$('.xzgongdi2').append('<option value="0">选择工地</option>')
+			$('.xzgongdi2').append(ele)
+		}
+	});
+
+	//工地选择change事件
+	$('body').on('change', '.xzgongdi2', function () {
+		var projectId = $(this).val();
+		var address = $(this).find("option:selected").attr('address');
+		var work_unit = $(this).find("option:selected").attr('work_unit');
+		var project_code = $(this).find("option:selected").attr("project_code");
+
+		$('.j-khmc').text(work_unit);
+		$('.j-address').text(address);
+		//考勤机打印
+		$.ajax({
+			type: "get",
+			url: "/findProjectInfo?projectId=" + projectId,
+			dataType: "json",
+			success: function (response) {
+				var data = response.content.attList
+				var getTpl = document.getElementById('demo-kaoqing').innerHTML
+					, view = document.getElementById('kaoqing-view');
+
+				layui.use('laytpl', function () {
+					var laytpl = layui.laytpl;
+					laytpl(getTpl).render(data, function (html) {
+						view.innerHTML = html;
+					});
+
+				});
+
+			}
+		});
+
+		//获取设备信息统计
+		$.ajax({
+			type: "get",
+			url: "/system/getEquipmentInfo?projectCode=" + project_code,
+			dataType: "json",
+			success: function (response) {
+				var getTpl = document.getElementById('demo-taji').innerHTML
+					, view = document.getElementById('gd-online-view');
+
+				layui.use('laytpl', function () {
+					var laytpl = layui.laytpl;
+					laytpl(getTpl).render(response, function (html) {
+						view.innerHTML = html;
+					});
+
+				});
+
+			}
+		});
+
+		//环境监测
+		$.ajax({
+			type: "get",
+			url: "/system/getEquipmentInfoNew?type=1&projectCode=" + project_code,
+			dataType: "json",
+			success: function (response) {
+				if (response.length > 0) {
+					$('.j-show-huanjing').show();
+				} else {
+					$('.j-show-huanjing').hide();
+				};
+				var getTpl = document.getElementById('demo-huanqing').innerHTML
+					, view = document.getElementById('huanjing-view');
+				layui.use('laytpl', function () {
+					var laytpl = layui.laytpl;
+					laytpl(getTpl).render(response, function (html) {
+						view.innerHTML = html;
+					});
+
+				});
+
+			}
+		});
+		/////////over
+
+		//塔机监测
+		$.ajax({
+			type: "get",
+			url: "/system/getEquipmentInfoNew?type=2&projectCode=" + project_code,
+			dataType: "json",
+			success: function (response) {
+
+				if (response.length > 0) {
+					$('.j-show-taji').show();
+				}else{
+					$('.j-show-taji').hide();	
+				}
+
+				var getTpl = document.getElementById('demo-taji').innerHTML
+					, view = document.getElementById('taji-view');
+				layui.use('laytpl', function () {
+					var laytpl = layui.laytpl;
+					laytpl(getTpl).render(response, function (html) {
+						view.innerHTML = html;
+					});
+
+				});
+
+
+			}
+		});
+		/////////over
+
+		//升降机监测
+		$.ajax({
+			type: "get",
+			url: "/system/getEquipmentInfoNew?type=3&projectCode=" + project_code,
+			dataType: "json",
+			success: function (response) {
+				if (response.length > 0) {
+					$('.j-show-shengjiangji').show();
+				}else{
+					$('.j-show-shengjiangji').hide();
+				}
+
+				var getTpl = document.getElementById('demo-shengjiangji').innerHTML
+					, view = document.getElementById('shengjiangji-view');
+				layui.use('laytpl', function () {
+					var laytpl = layui.laytpl;
+					laytpl(getTpl).render(response, function (html) {
+						view.innerHTML = html;
+					});
+
+				});
+			}
+		});
+		/////////over
+
+
+	})
+
+
 </script>
 
 </html>

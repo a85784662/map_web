@@ -578,6 +578,12 @@ background-color: #fff;
     margin-bottom: 10px;
     display: none;
 }
+.xzgongdi2{
+    width: 660px;
+    height: 30px;
+    line-height: 30px;
+    border:1px solid #d8d8d8;
+}
 .big-baoqi{
     display: none;
 }
@@ -667,6 +673,10 @@ background-color: #fff;
     .lmw-print-button-wrap{
       display: none;
     }
+    .xzgongdi2{
+        border:none;
+        color:#666;
+    }
   }
 
 .kqj-detail-wrap{
@@ -696,4 +706,9 @@ background-color: #fff;
     height: 40px;
 }
 
-
+.ta-m{
+    margin-top:10px;
+}
+.j-show-taji,.j-show-shengjiangji{
+    display: none;
+}
