@@ -3,7 +3,6 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>print</title>
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
@@ -13,6 +12,14 @@
 		<div class="lmw-print-head">重庆恢恢信息技术有限公司智慧工地安装清单</div>
 		<div class="lmw-table-wrap1 l-clear">
 			<table class="lmw-table">
+				<tr class="mw-print-hide">
+					<td class="lmw-table-title">选择区域：</td>
+					<td>
+						<select class="xzquyu2">
+							<option value="0">选择区域</option>
+						</select>
+					</td>
+				</tr>
 				<tr>
 					<td class="lmw-table-title">工地名称：</td>
 					<td>
@@ -105,13 +112,13 @@
 			<table class="lmw-table">
 				<tr>
 					<td class="lmw-table-title">安装人员：</td>
-					<td></td>
+					<td style="width:250px"></td>
 					<td class="lmw-table-title">日期：</td>
-					<td></td>
+					<td class="j-az-date"></td>
 				</tr>
 				<tr>
 					<td class="lmw-table-title">客户确认签字：</td>
-					<td></td>
+					<td style="width:250px"></td>
 					<td class="lmw-table-title">日期：</td>
 					<td></td>
 				</tr>
@@ -158,7 +165,7 @@
 		{{#  if(index === 0){ }}
 		<td rowspan={{d.length}} style="width:70px">{{d.length}}</td>
 		{{#  } }} 
-		<td style="width:200px">{{item.environmentInfoAddr}}</td>
+		<td style="width:200px">{{item.environmentInfoAddr?item.environmentInfoAddr:""}}</td>
 		<td></td>
 	</tr>
 	{{#  }); }}
@@ -172,7 +179,7 @@
 		{{#  if(index === 0){ }}
 		<td rowspan={{d.length}} style="width:70px">{{d.length}}</td>
 		{{#  } }} 
-		<td style="width:200px">{{item.craneInfoAddr}}</td>
+		<td style="width:200px">{{item.craneInfoAddr?item.craneInfoAddr:""}}</td>
 		<td></td>
 	</tr>
 	{{#  }); }}
@@ -186,7 +193,7 @@
 		{{#  if(index === 0){ }}
 		<td rowspan={{d.length}} style="width:70px">{{d.length}}</td>
 		{{#  } }} 
-		<td style="width:200px">{{item.elevatorInfoAddr}}</td>
+		<td style="width:200px">{{item.elevatorInfoAddr?item.elevatorInfoAddr:""}}</td>
 		<td></td>
 	</tr>
 	{{#  }); }}
@@ -196,25 +203,61 @@
 	$('.lmw-print-button').click(function () {
 		window.print()
 	});
-	//工地选择初始化
+
+	//获取区域信息
 	$.ajax({
 		type: "get",
-		url: "/findProjectList?start=1&display=10000",
+		url: "/findAreaList",
 		dataType: "json",
 		success: function (response) {
 			var data = response.content;
 			var ele = "";
 			for (var i = 0; i < data.length; i++) {
-				ele += '<option project_code=' + data[i].project_code + ' address=' + data[i].address + ' work_unit=' + data[i].work_unit + ' value=' + data[i].id + '>' + data[i].name + '</option>'
+				ele += '<option value=' + data[i].id + '>' + data[i].region_name + '</option>'
 			}
-			$('.xzgongdi2').html("");
-			$('.xzgongdi2').append('<option value="0">选择工地</option>')
-			$('.xzgongdi2').append(ele)
-		},
-		complete:function(){
+			$('.xzquyu2').append(ele);
 			$('.loading-wrap').hide();
 		}
 	});
+
+	////
+	$('.xzquyu2').change(function (e) {
+		currentVal = $(this).val()
+		if (currentVal === "0") {
+			$('.xzgongdi2').html("");
+			$('.xzgongdi2').hide();
+		} else {
+			//工地选择初始化
+			$('.loading-wrap').show();
+			$.ajax({
+				type: "get",
+				url: "/findProjectList?start=1&display=100000&areaId=" + currentVal,
+				dataType: "json",
+				success: function (response) {
+					var data = response.content;
+					$('.xzgongdi2').show();
+					var ele = "";
+					for (var i = 0; i < data.length; i++) {
+						ele += '<option project_code=' + data[i].project_code + ' address=' + data[i].address + ' work_unit=' + data[i].work_unit + ' value=' + data[i].id + '>' + data[i].name + '</option>'
+					}
+					$('.xzgongdi2').html("");
+					$('.xzgongdi2').append('<option value="0">选择工地</option>')
+					$('.xzgongdi2').append(ele)
+				},
+				complete: function () {
+					$('.loading-wrap').hide();
+				}
+			});
+
+
+
+
+		}
+	})
+
+
+
+
 
 	//工地选择change事件
 	$('body').on('change', '.xzgongdi2', function () {
@@ -245,7 +288,7 @@
 				});
 
 			},
-			complete:function(){
+			complete: function () {
 				$('.loading-wrap').hide();
 			}
 		});
@@ -268,7 +311,7 @@
 				});
 
 			},
-			complete:function(){
+			complete: function () {
 				$('.loading-wrap').hide();
 			}
 		});
@@ -295,7 +338,7 @@
 				});
 
 			},
-			complete:function(){
+			complete: function () {
 				$('.loading-wrap').hide();
 			}
 		});
@@ -326,7 +369,7 @@
 
 
 			},
-			complete:function(){
+			complete: function () {
 				$('.loading-wrap').hide();
 			}
 		});
@@ -354,15 +397,31 @@
 
 				});
 			},
-			complete:function(){
+			complete: function () {
 				$('.loading-wrap').hide();
 			}
 		});
 		/////////over
-
-
 	})
 
+	function getNowFormatDate() {
+        var date = new Date();
+        var seperator1 = "-";
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var strDate = date.getDate();
+        if (month >= 1 && month <= 9) {
+            month = "0" + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+            strDate = "0" + strDate;
+        }
+        var currentdate = year + seperator1 + month + seperator1 + strDate;
+        return currentdate;
+    }
+
+	var currentDate = getNowFormatDate()
+	$('.j-az-date').text(currentDate)
 
 </script>
 
