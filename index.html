@@ -43,6 +43,13 @@
 
           </div>
         </div>
+        <div class="map-sidebar-cont">
+          <div class="jbxx-t"><span class="icon_">|</span> 视频监测实时数据</div>
+          <div class="jbxx-cnt f12" id="gd-camera-view">
+            
+
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -441,23 +448,21 @@
       
 </script>
 
-<!-- <script type="text/javascript">
-  layui.use(['laypage', 'layer'], function () {
-    var laypage = layui.laypage
-      , layer = layui.layer;
+<!-- 视频信息 -->
+<script id="gd-camera-demo" type="text/html">
+  <table>
+      <tr>
+        <th>设备总数</th>
+        <th>在线设备数</th>
+        <th>离线设备数</th>
+      </tr>
+      <tr data-type="1" class="j-lxsz">
+        <td>{{d.total_count}}</td>
+        <td>{{d.suc_count}}</td>
+        <td>{{d.err_count}}</td>
+      </tr>
 
-    //分页
-    laypage.render({
-      elem: 'demo7'
-      , count: 50
-      , theme: '#3855ff'
-      , layout: ['prev', 'page', 'next']
-      , jump: function (obj) {
-        console.log(obj)
-      }
-    });
-
-  });
-</script> -->
+    </table>
+</script>
 
 </html>

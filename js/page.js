@@ -105,6 +105,27 @@ function createMarkers(markers2) {
                 }
             });
 
+            //视频监控信息统计
+            $.ajax({
+                type: "get",
+                url: "http://zhgdwx.cqhhxk.com/videomonitor/API?fun=DevStat&projectId="+projectId,
+                dataType: "json",
+                success: function (response) {
+
+                    var getTpl = document.getElementById('gd-camera-demo').innerHTML
+                        , view = document.getElementById('gd-camera-view');
+
+                    layui.use('laytpl', function () {
+                        var laytpl = layui.laytpl;
+                        laytpl(getTpl).render(response.content, function (html) {
+                            view.innerHTML = html;
+                        });
+
+                    });
+
+                }
+            });
+
             //获取项目详情
             $.ajax({
                 type: "get",
@@ -305,6 +326,26 @@ $('body').on('change', '.xzgongdi', function () {
     $('.mark-wrap').removeClass('click');
     $('.bottom-arrow').removeClass('isclick');
     $('.mark-wrap[dataid=' + projectId + ']').addClass('click').find('.bottom-arrow').addClass('isclick');
+    //视频监控信息统计
+    $.ajax({
+        type: "get",
+        url: "http://zhgdwx.cqhhxk.com/videomonitor/API?fun=DevStat&projectId="+projectId,
+        dataType: "json",
+        success: function (response) {
+
+            var getTpl = document.getElementById('gd-camera-demo').innerHTML
+                , view = document.getElementById('gd-camera-view');
+
+            layui.use('laytpl', function () {
+                var laytpl = layui.laytpl;
+                laytpl(getTpl).render(response.content, function (html) {
+                    view.innerHTML = html;
+                });
+
+            });
+
+        }
+    });
     //获取项目详情
     $.ajax({
         type: "get",
@@ -583,5 +624,8 @@ $('body').on('click', '.j-shengjiangji-a-detail', function () {
     });
 
 });
+
+
+
 
 

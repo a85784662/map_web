@@ -71,11 +71,13 @@
     width:320px;
     padding:10px;
     position: absolute;
-    /* right:-340px; */
     right:0;
     top:50px;
+    bottom:0px;
     z-index: 777;
     box-sizing: border-box;
+    overflow: hidden;
+    overflow-y: auto;
 }
 
 .map-sidebar.ffbg{
