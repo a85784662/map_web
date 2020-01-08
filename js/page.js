@@ -625,7 +625,10 @@ $('body').on('click', '.j-shengjiangji-a-detail', function () {
 
 });
 
-
-
-
+$('body').on('click','.jbxx-t',function(){
+    $(this).parents('.map-sidebar-cont').find('.jbxx-cnt').toggle();
+})
+$('body').on('click','.jbxx-t',function(){
+    $(this).parents('.map-sidebar-cont').find('.kqj-list-wrap').toggle();
+})
 
